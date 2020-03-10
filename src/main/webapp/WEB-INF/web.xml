@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+
+
+    <servlet>
+        <servlet-name>MainServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.MainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewCategoryServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.ViewCategoryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewCategoryServlet</servlet-name>
+        <url-pattern>/viewCategory</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewProductServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.ViewProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewProductServlet</servlet-name>
+        <url-pattern>/viewProduct</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewItemServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.ViewItemServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewItemServlet</servlet-name>
+        <url-pattern>/viewItem</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchProductsServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.SearchProductsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SearchProductsServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddItemCartServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.AddItemCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddItemCartServlet</servlet-name>
+        <url-pattern>/addItemCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewCartServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.ViewCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewCartServlet</servlet-name>
+        <url-pattern>/viewCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RemoveItemCartServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.RemoveItemCartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RemoveItemCartServlet</servlet-name>
+        <url-pattern>/removeItemCart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CheckOutServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.CheckOutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckOutServlet</servlet-name>
+        <url-pattern>/checkOut</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>SignOnServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.SignOnServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignOnServlet</servlet-name>
+        <url-pattern>/signOn</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignOnFormServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.SignOnFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignOnFormServlet</servlet-name>
+        <url-pattern>/signOnForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ViewMyAccountServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.ViewMyAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewMyAccountServlet</servlet-name>
+        <url-pattern>/viewMyAccount</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SignOutServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.SignOutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SignOutServlet</servlet-name>
+        <url-pattern>/signOut</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditAccountFormServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.EditAccountFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditAccountFormServlet</servlet-name>
+        <url-pattern>/editAccountForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewAccountServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.NewAccountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewAccountServlet</servlet-name>
+        <url-pattern>/newAccount</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>NewAccountFormServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.NewAccountFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewAccountFormServlet</servlet-name>
+        <url-pattern>/newAccountForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.NewOrderFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NewOrderFormServlet</servlet-name>
+        <url-pattern>/newOrderForm</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShippingFormServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.ShippingFormServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShippingFormServlet</servlet-name>
+        <url-pattern>/shippingForm</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>ViewOrderServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.ViewOrderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewOrderServlet</servlet-name>
+        <url-pattern>/viewOrder</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DrawServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.DrawServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DrawServlet</servlet-name>
+        <url-pattern>/draw</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UpdateCartJSServlet</servlet-name>
+        <servlet-class>org.csu.myPetStore.web.servlets.UpdateCartJSServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UpdateCartJSServlet</servlet-name>
+        <url-pattern>/updateCartJS</url-pattern>
+    </servlet-mapping>
+
+</web-app>
