@@ -1,0 +1,11 @@
+.box2{}
+.box2 img{display:block; padding:2px; border:0;}
+.box2 a{color:#333; text-decoration:none;border:2px solid #FFF; float:left; cursor:hand;}
+.box2 a span{display:none; color:#F00;}
+.box2 a span h1{font-size:12px; position:absolute; bottom:0; background:#333; color:#FFF; font-weight:normal; text-align:center; width:320px; padding:4px; display:block;
+    filter:alpha(opacity=60);
+    -moz-opacity:0.60;
+    opacity:0.60; top:80px; height:30px;
+}
+.box2 a:hover{color:#999; border:2px solid #333; }
+.box2 a:hover span{display:inline; position:absolute;}
