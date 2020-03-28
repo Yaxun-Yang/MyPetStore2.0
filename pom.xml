@@ -19,6 +19,14 @@
     </properties>
 
     <dependencies>
+        <!-- 配置Spring Boot热部署依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -53,6 +61,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -60,8 +69,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 实现热部署的设置 -->
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
+
     </build>
 
 </project>

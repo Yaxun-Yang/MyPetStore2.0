@@ -1,41 +1,31 @@
 package org.csu.mypetstore.domain;
 
+public class Category {
+    private String categoryId;
+    private String name;
+    private String description;
 
-import java.io.Serializable;
+    public String getCategoryId() {
+        return categoryId;
+    }
 
-public class Category implements Serializable {
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
 
+    public String getName() {
+        return name;
+    }
 
-  private String categoryId;
-  private String name;
-  private String description;
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getCategoryId() {
-    return categoryId;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public void setCategoryId(String categoryId) {
-    this.categoryId = categoryId;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public String toString() {
-    return getCategoryId();
-  }
-
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

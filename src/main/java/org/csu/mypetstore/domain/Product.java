@@ -1,48 +1,58 @@
 package org.csu.mypetstore.domain;
 
-import java.io.Serializable;
+public class Product {
+    private String productId;
+    private String categoryId;
+    private String name;
+    private String description;
+    private String descriptionImage;
+    private String descriptionText;
 
-public class Product implements Serializable {
+    public String getProductId() {
+        return productId;
+    }
 
-  private String productId;
-  private String categoryId;
-  private String name;
-  private String description;
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
 
-  public String getProductId() {
-    return productId;
-  }
+    public String getCategoryId() {
+        return categoryId;
+    }
 
-  public void setProductId(String productId) {
-    this.productId = productId.trim();
-  }
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
 
-  public String getCategoryId() {
-    return categoryId;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setCategoryId(String categoryId) {
-    this.categoryId = categoryId;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public String getDescription() {
-    return description;
-  }
+    public String getDescriptionImage() {
+        return descriptionImage;
+    }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public void setDescriptionImage(String descriptionImage) {
+        this.descriptionImage = descriptionImage;
+    }
 
-  public String toString() {
-    return getName();
-  }
+    public String getDescriptionText() {
+        return descriptionText;
+    }
 
+    public void setDescriptionText(String descriptionText) {
+        this.descriptionText = descriptionText;
+    }
 }

@@ -1,38 +1,53 @@
 package org.csu.mypetstore.domain;
 
-import java.io.Serializable;
+import java.math.BigDecimal;
 
-public class CartItem implements Serializable {
+public class CartItem {
+    private Item item;
+    private int quantity;
+    private boolean inStock;
+    private BigDecimal total;
 
-  private int cartId;
-  private String  itemId;
-  private int quantity;
+    public boolean isInStock() {
+        return inStock;
+    }
 
-  public CartItem(){}
+    public void setInStock(boolean inStock) {
+        this.inStock = inStock;
+    }
 
-  public CartItem(int cartId)
-  {
-    this.cartId = cartId;
-  }
+    public BigDecimal getTotal() {
+        return total;
+    }
 
-  public int getCartId() {
-    return cartId;
-  }
+    public Item getItem() {
+        return item;
+    }
 
-  public String getItemId() {
-    return itemId;
-  }
+    public void setItem(Item item) {
+        this.item = item;
+        calculateTotal();
+    }
 
-  public void setItemId(String itemId) {
-    this.itemId = itemId;
-  }
+    public int getQuantity() {
+        return quantity;
+    }
 
-  public int getQuantity() {
-    return quantity;
-  }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+        calculateTotal();
+    }
 
-  public void setQuantity(int quantity) {
-    this.quantity = quantity;
-  }
+    public void incrementQuantity() {
+        quantity++;
+        calculateTotal();
+    }
 
+    private void calculateTotal() {
+        if (item != null && item.getListPrice() != null) {
+            total = item.getListPrice().multiply(new BigDecimal(quantity));
+        } else {
+            total = null;
+        }
+    }
 }
