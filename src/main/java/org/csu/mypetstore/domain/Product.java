@@ -4,9 +4,8 @@ public class Product {
     private String productId;
     private String categoryId;
     private String name;
-    private String description;
-    private String descriptionImage;
-    private String descriptionText;
+    private String image;
+    private String text;
 
     public String getProductId() {
         return productId;
@@ -32,27 +31,19 @@ public class Product {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImage() {
+        return image;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImage(String image) {
+        this.image = image.trim();
     }
 
-    public String getDescriptionImage() {
-        return descriptionImage;
+    public String getText() {
+        return text;
     }
 
-    public void setDescriptionImage(String descriptionImage) {
-        this.descriptionImage = descriptionImage;
-    }
-
-    public String getDescriptionText() {
-        return descriptionText;
-    }
-
-    public void setDescriptionText(String descriptionText) {
-        this.descriptionText = descriptionText;
+    public void setText(String text) {
+        this.text = text.trim();
     }
 }

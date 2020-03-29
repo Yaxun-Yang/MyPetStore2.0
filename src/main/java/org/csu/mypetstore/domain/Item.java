@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 public class Item {
     private String itemId;
     private String productId;
-    private BigDecimal listPrice;
     private BigDecimal unitCost;
     private int supplierId;
     private String status;
@@ -14,8 +13,6 @@ public class Item {
     private String attribute3;
     private String attribute4;
     private String attribute5;
-    private Product product;
-    private int quantity;
 
     public String getItemId() {
         return itemId;
@@ -31,14 +28,6 @@ public class Item {
 
     public void setProductId(String productId) {
         this.productId = productId;
-    }
-
-    public BigDecimal getListPrice() {
-        return listPrice;
-    }
-
-    public void setListPrice(BigDecimal listPrice) {
-        this.listPrice = listPrice;
     }
 
     public BigDecimal getUnitCost() {
@@ -70,7 +59,7 @@ public class Item {
     }
 
     public void setAttribute1(String attribute1) {
-        this.attribute1 = attribute1;
+        this.attribute1 = attribute1.trim();
     }
 
     public String getAttribute2() {
@@ -78,7 +67,7 @@ public class Item {
     }
 
     public void setAttribute2(String attribute2) {
-        this.attribute2 = attribute2;
+        this.attribute2 = attribute2.trim();
     }
 
     public String getAttribute3() {
@@ -86,7 +75,7 @@ public class Item {
     }
 
     public void setAttribute3(String attribute3) {
-        this.attribute3 = attribute3;
+        this.attribute3 = attribute3.trim();
     }
 
     public String getAttribute4() {
@@ -94,7 +83,7 @@ public class Item {
     }
 
     public void setAttribute4(String attribute4) {
-        this.attribute4 = attribute4;
+        this.attribute4 = attribute4.trim();
     }
 
     public String getAttribute5() {
@@ -102,22 +91,7 @@ public class Item {
     }
 
     public void setAttribute5(String attribute5) {
-        this.attribute5 = attribute5;
+        this.attribute5 = attribute5.trim();
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }

@@ -68,9 +68,12 @@ $(function () {
         var num = this.name;
         $.ajax({
             type: "POST",
-            url: "updateCartJS?quantity=" + quantity + "&workingItemId=" + workingItemId,
+            url: "cart/updateItemQuantity",
             dataType:"json",
-            data:{},
+            data:{
+               " itemId": workingItemId,
+                "quantity":quantity
+            },
             success: function (result) {
 
                 $("#subTotal").text(result.subTotal);

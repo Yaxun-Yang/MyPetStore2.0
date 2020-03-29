@@ -14,12 +14,21 @@
 
 ## 页面跳转请求
 
-- 连接字段统一前缀`/catalog`
 - 请求类型皆为 get
 |请求页面|链接字段|
 |--- |---|
-|main|`/main`|
-|category|`/viewCategory`|
-|product|`/viewProduct`|
-|item|`/viewItem`|
+|main|`/catalog/main`|
+|category|`/catalog/viewCategory`|
+|product|`/catalog/viewProduct`|
+|item|`/catalog/viewItem`|
+|cart|`/cart/cart`|
 
+## 功能请求
+|功能描述|链接字段|
+|---|---|
+|购物车中商品数量实时更新|`/cart/updateItemQuantity`|
+
+## 关于功能构想（将实现）
+- 购物车页面每个商品提供单独的加一减一按钮
+- 购物车内商品数量改为0甚至负数后对应商品栏消失
+- 数据库内修改Item表格，删去listPrice 添加 quantity,以及修改对应的mapper service

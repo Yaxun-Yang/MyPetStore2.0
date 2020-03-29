@@ -13,11 +13,11 @@ public interface AccountMapper {
 
     void insertProfile(Account account);
 
-    void insertSignon(Account account);
+    void insertSignOn(Account account);
 
     void updateAccount(Account account);
 
     void updateProfile(Account account);
 
-    void updateSignon(Account account);
+    void updateSignOn(Account account);
 }

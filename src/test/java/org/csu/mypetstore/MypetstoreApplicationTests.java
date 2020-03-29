@@ -34,24 +34,24 @@ class MypetstoreApplicationTests {
     @Test
     void testProduct(){
         Product p = catalogService.getProduct("AV-CB-01");
-        System.out.println(p.getProductId()+","+p.getName()+p.getDescription());
+        System.out.println(p.getProductId()+","+p.getName()+p.getImage()+p.getText());
     }
 
     @Test
     void testProductList(){
-        List<Product> productlist = catalogService.getProductListByCategory("BIRDS");
-        System.out.println(productlist.size());
+        List<Product> productList = catalogService.getProductListByCategory("BIRDS");
+        System.out.println(productList.size());
     }
 
 
     @Test
     void testItem(){
         Item i = catalogService.getItem("EST-1");
-        System.out.println(i.getItemId()+","+i.getProductId()+","+i.getListPrice()+i.getAttribute1()+","+i.getStatus());
+        System.out.println(i.getItemId()+","+i.getProductId()+","+i.getUnitCost()+i.getAttribute1()+","+i.getStatus());
     }
 
     @Test
-    void testAccout(){
+    void testAccount(){
         Account a = accountService.getAccount("a");
         System.out.println(a.getEmail()+","+a.getPassword()+","+a.getAddress1());
         Account temp = a;

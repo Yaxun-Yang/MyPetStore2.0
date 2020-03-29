@@ -73,8 +73,8 @@ public class LineItem  implements Serializable{
   }
 
   private void calculateTotal() {
-    if (item != null && item.getListPrice() != null) {
-      total = item.getListPrice().multiply(new BigDecimal(quantity));
+    if (item != null && item.getUnitCost() != null) {
+      total = item.getUnitCost().multiply(new BigDecimal(quantity));
     } else {
       total = null;
     }

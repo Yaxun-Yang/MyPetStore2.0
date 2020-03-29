@@ -9,6 +9,15 @@
 <div th:replace="common/top">
 </div>
 <script type="text/javascript" src="../js/updateCart.js"></script>
+<script type="text/javascript" th:inline="javascript">
+
+    var msg =[[${msg}]]);
+    if(msg != null)
+        alert(msg);
+
+</script>
+<label  th:text="${msg}" >aaa</label>
+
 <div id="Content">
     <div id="BackLink">
         <a href="/catalog/main">Return to Main Menu</a>

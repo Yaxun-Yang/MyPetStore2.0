@@ -30,7 +30,7 @@ public class AccountService {
     public void insertAccount(Account account){
         accountMapper.insertAccount(account);
         accountMapper.insertProfile(account);
-        accountMapper.insertSignon(account);
+        accountMapper.insertSignOn(account);
     }
 
     public void updateAccount(Account account){
@@ -38,7 +38,7 @@ public class AccountService {
         accountMapper.updateProfile(account);
 
         if(account.getPassword() != null && account.getPassword().length() > 0){
-            accountMapper.updateSignon(account);
+            accountMapper.updateSignOn(account);
         }
     }
 }

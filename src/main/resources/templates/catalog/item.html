@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
+
 </head>
 <body>
 <header th:replace="common/top"></header>
+<script type="text/javascript" th:inline="javascript">
+
+    var msg =[[${msg}]]);
+    if(msg != null)
+        alert(msg);
+
+</script>
+<label  th:text="${msg}" >aaa</label>
 <div id="Content">
     <div id="BackLink">
         <a th:href="'/catalog/viewProduct?productId='+${item.productId}">
@@ -19,8 +28,8 @@
         <table>
             <tr>
                 <td>
-                    <label><img th:src="${product.descriptionImage}"></label>
-                    <label th:text="${product.descriptionText}"></label>
+                    <label><img th:src="${product.image}"></label>
+                    <label th:text="${product.text}"></label>
                 </td>
             </tr>
             <tr>
@@ -30,19 +39,19 @@
                 <td><b><font size="4" th:text="${item.attribute1}"> Item Attributes </font></b></td>
             </tr>
             <tr>
-                <td th:text="${item.product.name}">Product Name</td>
+                <td th:text="${product.name}">Product Name</td>
             </tr>
             <tr>
                 <td>
-                    <label th:if="${item.quantity <= 0}">Back ordered.</label>
-                    <label th:if="${item.quantity > 0}" th:text="${item.quantity}+'in stock.'">Quantity in stock.</label>
+                    <label th:if="${itemQuantity <= 0}">Back ordered.</label>
+                    <label th:if="${itemQuantity > 0}" th:text="${itemQuantity}+'in stock.'">Quantity in stock.</label>
                 </td>
             </tr>
             <tr>
                 <td th:text="'$'+${#numbers.formatDecimal(item.unitCost,1,2)}">Item List Price</td>
             </tr>
             <tr>
-                <td><a th:href="'/cart/addItemToCart?workingItemId='+${item.itemId}" >Add to Cart</a></td>
+                <td><a th:href="'/cart/addItem?itemId='+${item.itemId}" >Add to Cart</a></td>
             </tr>
         </table>
     </div>

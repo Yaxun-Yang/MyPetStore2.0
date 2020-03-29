@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.csu.mypetstore.persistence.AccountMapper">
-    <select id="getAccountByUsername" parameterType="string" resultType="Account">
+    <select id="getAccountByUsername"  resultType="Account">
         SELECT
             SIGNON.USERNAME,
             ACCOUNT.EMAIL,
@@ -28,7 +28,7 @@
             AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
     </select>
 
-    <select id="getAccountByUsernameAndPassword" parameterType="Account" resultType="Account">
+    <select id="getAccountByUsernameAndPassword"  resultType="Account">
         SELECT
             SIGNON.USERNAME,
             ACCOUNT.EMAIL,
@@ -55,7 +55,7 @@
             AND PROFILE.FAVCATEGORY = BANNERDATA.FAVCATEGORY
     </select>
 
-    <update id="updateAccount" parameterType="Account">
+    <update id="updateAccount" >
         UPDATE ACCOUNT SET
             EMAIL = #{email},
             FIRSTNAME = #{firstName},
@@ -71,7 +71,7 @@
         WHERE USERID = #{username}
     </update>
 
-    <insert id="insertAccount" parameterType="Account">
+    <insert id="insertAccount" >
         INSERT INTO ACCOUNT
             (EMAIL, FIRSTNAME, LASTNAME, STATUS, ADDR1, ADDR2, CITY, STATE, ZIP, COUNTRY, PHONE, USERID)
         VALUES(
@@ -79,26 +79,26 @@
             #{city}, #{state}, #{zip}, #{country}, #{phone}, #{username})
     </insert>
 
-    <update id="updateProfile" parameterType="Account">
+    <update id="updateProfile" >
         UPDATE PROFILE SET
             LANGPREF = #{languagePreference},
             FAVCATEGORY = #{favouriteCategoryId}
         WHERE USERID = #{username}
     </update>
 
-    <insert id="insertProfile" parameterType="Account">
+    <insert id="insertProfile" >
         INSERT INTO PROFILE
             (LANGPREF, FAVCATEGORY, USERID)
         VALUES (#{languagePreference}, #{favouriteCategoryId}, #{username})
     </insert>
 
-    <update id="updateSignon" parameterType="Account">
+    <update id="updateSignon" >
         UPDATE SIGNON SET
             PASSWORD = #{password}
         WHERE USERNAME = #{username}
     </update>
 
-    <insert id="insertSignon" parameterType="Account">
+    <insert id="insertSignOn" >
         INSERT INTO SIGNON
             (PASSWORD,USERNAME)
         VALUES (#{password}, #{username})

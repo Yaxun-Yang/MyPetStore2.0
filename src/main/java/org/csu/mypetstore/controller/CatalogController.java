@@ -36,7 +36,7 @@ public class CatalogController {
             model.addAttribute("category", category);
             return "catalog/category";
         }
-        return "redirect:catalog/main";
+        return "redirect:/main";
     }
 
     @GetMapping("/viewProduct")
@@ -60,7 +60,15 @@ public class CatalogController {
         Item item = catalogService.getItem(itemId);
         if(item != null)
         {
+            Product product = catalogService.getProduct(item.getProductId());
+            model.addAttribute("product",product);
             model.addAttribute("item",item);
+            int itemInventoryQuantity = catalogService.getItemInventoryQuantity(itemId);
+            model.addAttribute("itemQuantity",itemInventoryQuantity);
+            System.out.println(model.getAttribute("msg"));
+            if(model.getAttribute("msg") == null)
+            model.addAttribute("msg",null);
+
             return "catalog/item";
         }
         return "redirect:catalog/product?productId="+((Product)model.getAttribute("product")).getProductId();
