@@ -23,7 +23,7 @@
                 <th>Name</th>
             </tr>
             <tr th:each="product:${productList}">
-                <td><a th:href="@{/catalog/viewProduct?productId=}+${product.productId}" th:text="${product.productId}">Product ID</a></td>
+                <td><a th:href="'/catalog/viewProduct?productId='+${product.productId}" th:text="${product.productId}">Product ID</a></td>
                 <td th:text="${product.name}">name</td>
             </tr>
 <!--            <c:forEach var="product" items = "${sessionScope.productList}">-->

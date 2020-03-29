@@ -9,8 +9,8 @@
 <div th:replace="common/top">
 </div>
 <div id="Content">
-
     <div id="BackLink">
+
         <a th:href="'/catalog/viewCategory?categoryId='+${product.categoryId}">
             Return to <label th:text="${product.categoryId}">Category ID</label>
         </a>
@@ -27,22 +27,31 @@
                 <th>List Price</th>
                 <th>&nbsp;</th>
             </tr>
-            <tr>
-<!--                <a href="viewItem?itemId=${item.itemId}">${item.itemId}</a>-->
-                <td><a th:href="@{/catalog/viewItem?itemId=} + ${item.itemId}" th:text="item.itemId">item.itemId</a></td>
-<!--                ${item.product.productId}-->
-                <td th:text="${item.product.productId}"></td>
-<!--                ${item.attribute1}  fmt:formatNumber value="${item.listPrice}" -->
-                <td th:text="${item.attribute1}</td>
-<!--                fmt:formatNumber value="${item.listPrice}" -->
-                <td th:text="'$'+${#numbers.formatDecimal(item.listPrice,1,2)}">Item List Price</td>
-<!--                <a class="Button" href="addItemCart?workingItemId=${item.itemId}">Add to Cart</a>-->
-                <td><a th:href="'/cart/addItemToCart?workingItemId='+${item.itemId}">Add to Cart</a></td>
+
+            <tr th:each="item:${itemList}">
+                <td>
+                    <a th:href="'/catalog/viewItem?itemId='+${item.itemId}" th:text="${item.itemId}">
+                        ${item.itemId}
+                    </a>
+                </td>
+                <td th:text="${item.product.productId}">
+                    ${item.product.productId}
+                </td>
+                <td th:text="${item.attribute1}">
+                    ${item.attribute1}
+                </td>
+                <td th:text="'$'+${#numbers.formatDecimal(item.listPrice,1,2)}">
+                    Item List Price
+                </td>
+                <td>
+                    <a class="Button"th:href="'/cart/addItemToCart?workingItemId='+${item.itemId}">
+                        Add to Cart
+                    </a>
+                </td>
             </tr>
         </table>
-
-
     </div>
+</div>
     <div th:replace="common/bottom">
     </div>
 </body>
