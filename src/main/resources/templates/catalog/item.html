@@ -9,10 +9,11 @@
 <header th:replace="common/top"></header>
 <div id="Content">
     <div id="BackLink">
-        <a th:href="'/catalog/viewProduct?productId='+${product.productId}">
-            Return to <label th:text="${product.productId}">Product ID</label>
+        <a th:href="'/catalog/viewProduct?productId='+${item.productId}">
+            Return to <label th:text="${item.productId}">Product ID</label>
         </a>
     </div>
+
 
     <div id="Catalog">
         <table>
@@ -29,7 +30,7 @@
                 <td><b><font size="4" th:text="${item.attribute1}"> Item Attributes </font></b></td>
             </tr>
             <tr>
-                <td th:text="${product.name}">Product Name</td>
+                <td th:text="${item.product.name}">Product Name</td>
             </tr>
             <tr>
                 <td>
