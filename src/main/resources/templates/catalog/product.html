@@ -28,10 +28,15 @@
                 <th>&nbsp;</th>
             </tr>
             <tr>
-                <td><a th:href="@{/catalog/viewItem?itemId=}+${item.itemId}" th:text="item.itemId">item.itemId</a></td>
+<!--                <a href="viewItem?itemId=${item.itemId}">${item.itemId}</a>-->
+                <td><a th:href="@{/catalog/viewItem?itemId=} + ${item.itemId}" th:text="item.itemId">item.itemId</a></td>
+<!--                ${item.product.productId}-->
                 <td th:text="${item.product.productId}"></td>
+<!--                ${item.attribute1}  fmt:formatNumber value="${item.listPrice}" -->
                 <td th:text="${item.attribute1}</td>
+<!--                fmt:formatNumber value="${item.listPrice}" -->
                 <td th:text="'$'+${#numbers.formatDecimal(item.listPrice,1,2)}">Item List Price</td>
+<!--                <a class="Button" href="addItemCart?workingItemId=${item.itemId}">Add to Cart</a>-->
                 <td><a th:href="'/cart/addItemToCart?workingItemId='+${item.itemId}">Add to Cart</a></td>
             </tr>
         </table>
