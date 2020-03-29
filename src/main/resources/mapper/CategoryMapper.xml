@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.csu.mypetstore.persistence.CategoryMapper">
-    <select id="getCategory" parameterType="string" resultType="Category">
+    <select id="getCategory" parameterType="String" resultType="Category">
         SELECT
             CATID AS categoryId,
             NAME,

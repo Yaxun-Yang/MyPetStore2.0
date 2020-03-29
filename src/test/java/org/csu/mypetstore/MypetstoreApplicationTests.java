@@ -27,8 +27,8 @@ class MypetstoreApplicationTests {
 
     @Test
     void testCategory(){
-        Category c = catalogService.getCategory("BIRDS");
-        System.out.println(c.getCategoryId()+"+"+c.getName()+c.getDescription());
+        Category c = catalogService.getCategory("BIRD");
+        System.out.println(c);
     }
 
     @Test
