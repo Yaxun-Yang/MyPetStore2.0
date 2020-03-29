@@ -39,7 +39,7 @@
                 </td>
             </tr>
             <tr>
-                <td th:text="'$'+${#numbers.formatDecimal(item.listPrice,1,2)}">Item List Price</td>
+                <td th:text="'$'+${#numbers.formatDecimal(item.unitCost,1,2)}">Item List Price</td>
             </tr>
             <tr>
                 <td><a th:href="'/cart/addItemToCart?workingItemId='+${item.itemId}" >Add to Cart</a></td>

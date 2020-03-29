@@ -2,10 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MyPetStore</title>
     <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen" />
 </head>
 <body>
+<script type="text/javascript">
+    window.onblur=function(){
+        document.title="你快回来QAQ";
+    };
+    window.onfocus=function () {
+        document.title="MyPetStore";
+    }
+</script>
     <header th:fragment="header">
         <div id="Header">
 
