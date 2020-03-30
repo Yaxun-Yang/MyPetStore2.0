@@ -24,9 +24,10 @@
 |cart|`/cart/cart`|
 
 ## 功能请求
-|功能描述|链接字段|
-|---|---|
-|购物车中商品数量实时更新|`/cart/updateItemQuantity`|
+|功能描述|链接字段|参数|
+|---|---|---|
+|购物车中商品数量实时更新|`/cart/updateItemQuantity`|String:itemId,int：quantity|
+|向购物车中添加新商品|`/cart`|String:itemId|
 
 ## 关于功能构想（将实现）
 - 购物车页面每个商品提供单独的加一减一按钮

@@ -51,6 +51,7 @@ public class CartController {
 
         //测试用
         account = accountService.getAccount("a");
+
         if(account != null)
         {
             //弹出小弹窗内的信息
@@ -62,7 +63,8 @@ public class CartController {
             System.out.println(model.getAttribute("msg"));
             Cart cart = cartService.getCart(account.getUsername());
             cartService.addItem(cart.getCartId(),itemId);
-            return "redirect:/catalog/viewItem?itemId="+itemId;
+           // return "redirect:/catalog/viewItem?itemId="+itemId;
+            return "cart/cart";
         }
         return "redirect:/account/signOn";
     }
