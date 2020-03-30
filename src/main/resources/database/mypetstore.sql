@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : mySQL
+ Source Server         : mypetstore
  Source Server Type    : MySQL
- Source Server Version : 80017
+ Source Server Version : 50710
  Source Host           : localhost:3306
  Source Schema         : mypetstore
 
  Target Server Type    : MySQL
- Target Server Version : 80017
+ Target Server Version : 50710
  File Encoding         : 65001
 
- Date: 30/03/2020 19:52:11
+ Date: 31/03/2020 00:26:52
 */
 
 SET NAMES utf8mb4;
@@ -21,121 +21,133 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- Table structure for account
 -- ----------------------------
 DROP TABLE IF EXISTS `account`;
-CREATE TABLE `account`  (
-  `userid` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `email` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `firstname` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `lastname` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `addr1` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `addr2` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `city` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `state` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `zip` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `country` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `phone` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+CREATE TABLE `account` (
+  `userid` varchar(80) NOT NULL,
+  `email` varchar(80) DEFAULT NULL,
+  `firstname` varchar(80) DEFAULT NULL,
+  `lastname` varchar(80) DEFAULT NULL,
+  `status` varchar(2) DEFAULT NULL,
+  `addr1` varchar(80) DEFAULT NULL,
+  `addr2` varchar(40) DEFAULT NULL,
+  `city` varchar(80) DEFAULT NULL,
+  `state` varchar(80) DEFAULT NULL,
+  `zip` varchar(20) DEFAULT NULL,
+  `country` varchar(20) DEFAULT NULL,
+  `phone` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`userid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of account
 -- ----------------------------
+BEGIN;
 INSERT INTO `account` VALUES ('a', 'a', 'a', 'a', NULL, 'a', 'a', 'aa', 'a', 'a', 'a', 'a');
 INSERT INTO `account` VALUES ('ACID', 'acid@yourdomain.com', 'ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA', '555-555-5555');
 INSERT INTO `account` VALUES ('j2ee', 'j2ee@yourdomain.com', 'John', 'Smith', 'CB', '902 San Antonio Road', 'MS UCUP03-306', 'John', 'CB', '94415', 'USA', '322-513-1654');
 INSERT INTO `account` VALUES ('xyz', 'xyz@csu.edu.cn', 'a', 'a', NULL, 'a', 'a', 'aa', 'a', 'a', 'a', 'a');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for bannerdata
 -- ----------------------------
 DROP TABLE IF EXISTS `bannerdata`;
-CREATE TABLE `bannerdata`  (
-  `favcategory` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `bannername` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+CREATE TABLE `bannerdata` (
+  `favcategory` varchar(80) NOT NULL,
+  `bannername` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`favcategory`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of bannerdata
 -- ----------------------------
+BEGIN;
 INSERT INTO `bannerdata` VALUES ('BIRDS', '<image src=\"../images/banner_birds.gif\">');
 INSERT INTO `bannerdata` VALUES ('CATS', '<image src=\"../images/banner_cats.gif\">');
 INSERT INTO `bannerdata` VALUES ('DOGS', '<image src=\"../images/banner_dogs.gif\">');
 INSERT INTO `bannerdata` VALUES ('FISH', '<image src=\"../images/banner_fish.gif\">');
 INSERT INTO `bannerdata` VALUES ('REPTILES', '<image src=\"../images/banner_reptiles.gif\">');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for cart
 -- ----------------------------
 DROP TABLE IF EXISTS `cart`;
-CREATE TABLE `cart`  (
+CREATE TABLE `cart` (
   `cartid` int(10) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `username` varchar(255) NOT NULL,
   PRIMARY KEY (`cartid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1001 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of cart
 -- ----------------------------
+BEGIN;
 INSERT INTO `cart` VALUES (999, 'j2ee');
 INSERT INTO `cart` VALUES (1000, 'a');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for cartitem
 -- ----------------------------
 DROP TABLE IF EXISTS `cartitem`;
-CREATE TABLE `cartitem`  (
+CREATE TABLE `cartitem` (
   `cartid` int(10) NOT NULL,
   `itemid` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `quantity` int(10) NOT NULL,
-  PRIMARY KEY (`cartid`, `itemid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`cartid`,`itemid`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of cartitem
 -- ----------------------------
+BEGIN;
 INSERT INTO `cartitem` VALUES (1, 'EST-11', 2);
 INSERT INTO `cartitem` VALUES (1, 'EST-19', 2);
 INSERT INTO `cartitem` VALUES (1, 'EST-9', 2);
 INSERT INTO `cartitem` VALUES (999, 'EST-15', 1);
 INSERT INTO `cartitem` VALUES (999, 'EST-18', 1);
+INSERT INTO `cartitem` VALUES (1000, 'EST-18', 2);
 INSERT INTO `cartitem` VALUES (1000, 'EST-19', 4);
 INSERT INTO `cartitem` VALUES (1000, 'EST-20', 6);
 INSERT INTO `cartitem` VALUES (1000, 'EST-26', 14);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category`  (
-  `catid` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `name` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `descn` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+CREATE TABLE `category` (
+  `catid` varchar(10) NOT NULL,
+  `name` varchar(80) DEFAULT NULL,
+  `descn` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`catid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
+BEGIN;
 INSERT INTO `category` VALUES ('BIRDS', 'Birds', '<image src=\"images/birds_icon.gif\"><font size=\"5\" color=\"blue\"> Birds</font>');
 INSERT INTO `category` VALUES ('CATS', 'Cats', '<image src=\"images/cats_icon.gif\"><font size=\"5\" color=\"blue\"> Cats</font>');
 INSERT INTO `category` VALUES ('DOGS', 'Dogs', '<image src=\"images/dogs_icon.gif\"><font size=\"5\" color=\"blue\"> Dogs</font>');
 INSERT INTO `category` VALUES ('FISH', 'Fish', '<image src=\"images/fish_icon.gif\"><font size=\"5\" color=\"blue\"> Fish</font>');
 INSERT INTO `category` VALUES ('REPTILES', 'Reptiles', '<image src=\"images/reptiles_icon.gif\"><font size=\"5\" color=\"blue\"> Reptiles</font>');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for inventory
 -- ----------------------------
 DROP TABLE IF EXISTS `inventory`;
-CREATE TABLE `inventory`  (
-  `itemid` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+CREATE TABLE `inventory` (
+  `itemid` varchar(10) NOT NULL,
   `qty` int(11) NOT NULL,
   PRIMARY KEY (`itemid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of inventory
 -- ----------------------------
+BEGIN;
 INSERT INTO `inventory` VALUES ('EST-1', 9995);
 INSERT INTO `inventory` VALUES ('EST-10', 10000);
 INSERT INTO `inventory` VALUES ('EST-11', 10000);
@@ -164,32 +176,34 @@ INSERT INTO `inventory` VALUES ('EST-6', 10000);
 INSERT INTO `inventory` VALUES ('EST-7', 10000);
 INSERT INTO `inventory` VALUES ('EST-8', 10000);
 INSERT INTO `inventory` VALUES ('EST-9', 10000);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for item
 -- ----------------------------
 DROP TABLE IF EXISTS `item`;
-CREATE TABLE `item`  (
-  `itemid` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `productid` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `unitcost` decimal(10, 2) NULL DEFAULT NULL,
-  `supplier` int(11) NULL DEFAULT NULL,
-  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `attr1` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `attr2` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `attr3` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `attr4` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `attr5` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+CREATE TABLE `item` (
+  `itemid` varchar(10) NOT NULL,
+  `productid` varchar(10) NOT NULL,
+  `unitcost` decimal(10,2) DEFAULT NULL,
+  `supplier` int(11) DEFAULT NULL,
+  `status` varchar(2) DEFAULT NULL,
+  `attr1` varchar(80) DEFAULT NULL,
+  `attr2` varchar(80) DEFAULT NULL,
+  `attr3` varchar(80) DEFAULT NULL,
+  `attr4` varchar(80) DEFAULT NULL,
+  `attr5` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`itemid`) USING BTREE,
-  INDEX `fk_item_2`(`supplier`) USING BTREE,
-  INDEX `itemProd`(`productid`) USING BTREE,
-  CONSTRAINT `fk_item_1` FOREIGN KEY (`productid`) REFERENCES `product` (`productid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `fk_item_2` FOREIGN KEY (`supplier`) REFERENCES `supplier` (`suppid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  KEY `fk_item_2` (`supplier`) USING BTREE,
+  KEY `itemProd` (`productid`) USING BTREE,
+  CONSTRAINT `fk_item_1` FOREIGN KEY (`productid`) REFERENCES `product` (`productid`),
+  CONSTRAINT `fk_item_2` FOREIGN KEY (`supplier`) REFERENCES `supplier` (`suppid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
+BEGIN;
 INSERT INTO `item` VALUES ('EST-1', 'FI-SW-01', 10.00, 1, 'P', 'Large', NULL, NULL, NULL, NULL);
 INSERT INTO `item` VALUES ('EST-10', 'K9-DL-01', 12.00, 1, 'P', 'Spotted Adult Female', NULL, NULL, NULL, NULL);
 INSERT INTO `item` VALUES ('EST-11', 'RP-SN-01', 12.00, 1, 'P', 'Venomless', NULL, NULL, NULL, NULL);
@@ -218,23 +232,25 @@ INSERT INTO `item` VALUES ('EST-6', 'K9-BD-01', 12.00, 1, 'P', 'Male Adult', NUL
 INSERT INTO `item` VALUES ('EST-7', 'K9-BD-01', 12.00, 1, 'P', 'Female Puppy', NULL, NULL, NULL, NULL);
 INSERT INTO `item` VALUES ('EST-8', 'K9-PO-02', 12.00, 1, 'P', 'Male Puppy', NULL, NULL, NULL, NULL);
 INSERT INTO `item` VALUES ('EST-9', 'K9-DL-01', 12.00, 1, 'P', 'Spotless Male Puppy', NULL, NULL, NULL, NULL);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for lineitem
 -- ----------------------------
 DROP TABLE IF EXISTS `lineitem`;
-CREATE TABLE `lineitem`  (
+CREATE TABLE `lineitem` (
   `orderid` int(11) NOT NULL,
   `linenum` int(11) NOT NULL,
-  `itemid` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `itemid` varchar(10) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `unitprice` decimal(10, 2) NOT NULL,
-  PRIMARY KEY (`orderid`, `linenum`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  `unitprice` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`orderid`,`linenum`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of lineitem
 -- ----------------------------
+BEGIN;
 INSERT INTO `lineitem` VALUES (999, 997, 'EST-11', 2, 18.50);
 INSERT INTO `lineitem` VALUES (999, 998, 'EST-19', 1, 15.50);
 INSERT INTO `lineitem` VALUES (999, 999, 'EST-9', 2, 18.50);
@@ -290,23 +306,25 @@ INSERT INTO `lineitem` VALUES (1015, 1048, 'EST-14', 1, 58.50);
 INSERT INTO `lineitem` VALUES (1016, 1049, 'EST-27', 4, 155.29);
 INSERT INTO `lineitem` VALUES (1020, 1050, 'EST-21', 1, 5.29);
 INSERT INTO `lineitem` VALUES (1020, 1051, 'EST-12', 1, 18.50);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for log
 -- ----------------------------
 DROP TABLE IF EXISTS `log`;
-CREATE TABLE `log`  (
+CREATE TABLE `log` (
   `logid` int(10) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `logdate` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `logtype` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `objectid` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `logdate` varchar(255) DEFAULT NULL,
+  `logtype` varchar(255) DEFAULT NULL,
+  `objectid` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`logid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 208 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB AUTO_INCREMENT=208 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of log
 -- ----------------------------
+BEGIN;
 INSERT INTO `log` VALUES (13, 'j2ee', '2019-10-27 16:00:26', 'View Product', 'AV-SB-02');
 INSERT INTO `log` VALUES (14, 'j2ee', '2019-10-27 16:00:29', 'Add Item', 'EST-19');
 INSERT INTO `log` VALUES (15, 'j2ee', '2019-10-27 16:00:46', 'Pay Order', '1000');
@@ -502,43 +520,45 @@ INSERT INTO `log` VALUES (204, 'j2ee', '2020-03-29 22:53:17', 'View Category', '
 INSERT INTO `log` VALUES (205, 'j2ee', '2020-03-29 22:53:19', 'View Category', 'BIRDS');
 INSERT INTO `log` VALUES (206, 'j2ee', '2020-03-29 22:53:22', 'View Category', 'DOGS');
 INSERT INTO `log` VALUES (207, 'j2ee', '2020-03-29 22:53:30', 'View Product', 'K9-RT-02');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for orders
 -- ----------------------------
 DROP TABLE IF EXISTS `orders`;
-CREATE TABLE `orders`  (
+CREATE TABLE `orders` (
   `orderid` int(11) NOT NULL AUTO_INCREMENT,
-  `userid` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `userid` varchar(80) NOT NULL,
   `orderdate` date NOT NULL,
-  `shipaddr1` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `shipaddr2` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `shipcity` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `shipstate` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `shipzip` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `shipcountry` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `billaddr1` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `billaddr2` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `billcity` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `billstate` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `billzip` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `billcountry` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `courier` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `totalprice` decimal(10, 2) NOT NULL,
-  `billtofirstname` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `billtolastname` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `shiptofirstname` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `shiptolastname` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `creditcard` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `exprdate` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `cardtype` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `locale` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `shipaddr1` varchar(80) NOT NULL,
+  `shipaddr2` varchar(80) DEFAULT NULL,
+  `shipcity` varchar(80) NOT NULL,
+  `shipstate` varchar(80) NOT NULL,
+  `shipzip` varchar(20) NOT NULL,
+  `shipcountry` varchar(20) NOT NULL,
+  `billaddr1` varchar(80) NOT NULL,
+  `billaddr2` varchar(80) DEFAULT NULL,
+  `billcity` varchar(80) NOT NULL,
+  `billstate` varchar(80) NOT NULL,
+  `billzip` varchar(20) NOT NULL,
+  `billcountry` varchar(20) NOT NULL,
+  `courier` varchar(80) NOT NULL,
+  `totalprice` decimal(10,2) NOT NULL,
+  `billtofirstname` varchar(80) NOT NULL,
+  `billtolastname` varchar(80) NOT NULL,
+  `shiptofirstname` varchar(80) NOT NULL,
+  `shiptolastname` varchar(80) NOT NULL,
+  `creditcard` varchar(80) NOT NULL,
+  `exprdate` varchar(80) NOT NULL,
+  `cardtype` varchar(80) NOT NULL,
+  `locale` varchar(80) NOT NULL,
   PRIMARY KEY (`orderid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1018 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB AUTO_INCREMENT=1018 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
+BEGIN;
 INSERT INTO `orders` VALUES (999, 'j2ee', '2019-10-21', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 19.20, 'a', 'a', 'a', 'a', '9999', 'a', 'visa', 'a');
 INSERT INTO `orders` VALUES (1000, 'j2ee', '2019-10-27', '902 San Antonio Road', 'MS UCUP03-306', 'John', 'CB', '94415', 'USA', 'xixi', 'haha', 'lala', 'caca', '123', 'English', 'UPS', 39.50, 'John', 'Smith', 'John', 'Smith', '12345', ' 12/2019', 'visa', 'CA');
 INSERT INTO `orders` VALUES (1001, 'j2ee', '2019-10-27', '902 San Antonio Road', 'MS UCUP03-306', 'John', 'CB', '94415', 'USA', 'xixi', 'haha', 'lala', 'caca', '123', 'English', 'UPS', 23.50, 'John', 'Smith', 'John', 'Smith', '12345', ' 12/2019', 'visa', 'CA');
@@ -558,21 +578,23 @@ INSERT INTO `orders` VALUES (1014, 'j2ee', '2019-11-29', '', '', '', '', '', '',
 INSERT INTO `orders` VALUES (1015, 'j2ee', '2019-11-29', '902 San Antonio Road', 'MS UCUP03-306', 'John', 'CB', '94415', 'USA', '902 San Antonio Road', 'MS UCUP03-306', 'John', 'CB', '94415', 'English', 'UPS', 0.00, 'John', 'Smith', 'John', 'Smith', '12345', ' 12/2019', 'visa', 'CA');
 INSERT INTO `orders` VALUES (1016, 'j2ee', '2020-03-29', '', '', '', '', '', '', '902 San Antonio Road', 'MS UCUP03-306', 'John', 'CB', '94415', 'English', 'UPS', 0.00, 'John', 'Smith', '', '', '12345', ' 12/2019', 'visa', 'CA');
 INSERT INTO `orders` VALUES (1017, 'j2ee', '2020-03-29', '902 San Antonio Road', 'MS UCUP03-306', 'John', 'CB', '94415', 'USA', '902 San Antonio Road', 'MS UCUP03-306', 'John', 'CB', '94415', 'English', 'UPS', 23.79, 'John', 'Smith', 'John', 'Smith', '12345', ' 12/2019', 'visa', 'CA');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for orderstatus
 -- ----------------------------
 DROP TABLE IF EXISTS `orderstatus`;
-CREATE TABLE `orderstatus`  (
+CREATE TABLE `orderstatus` (
   `orderid` int(11) NOT NULL,
   `timestamp` date NOT NULL,
-  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `status` varchar(255) NOT NULL,
   PRIMARY KEY (`orderid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of orderstatus
 -- ----------------------------
+BEGIN;
 INSERT INTO `orderstatus` VALUES (999, '2019-10-21', 'Paid');
 INSERT INTO `orderstatus` VALUES (1000, '2019-10-27', 'Paid');
 INSERT INTO `orderstatus` VALUES (1001, '2019-10-27', 'Paid');
@@ -595,121 +617,132 @@ INSERT INTO `orderstatus` VALUES (1017, '2019-11-29', 'Not Paid');
 INSERT INTO `orderstatus` VALUES (1018, '2019-11-29', 'Not Paid');
 INSERT INTO `orderstatus` VALUES (1019, '2020-03-29', 'Paid');
 INSERT INTO `orderstatus` VALUES (1020, '2020-03-29', 'Paid');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for product
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
-CREATE TABLE `product`  (
-  `productid` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `category` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `name` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `text` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+CREATE TABLE `product` (
+  `productid` varchar(10) NOT NULL,
+  `category` varchar(10) NOT NULL,
+  `name` varchar(80) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `text` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`productid`) USING BTREE,
-  INDEX `productCat`(`category`) USING BTREE,
-  INDEX `productName`(`name`) USING BTREE,
-  CONSTRAINT `fk_product_1` FOREIGN KEY (`category`) REFERENCES `category` (`catid`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  KEY `productCat` (`category`) USING BTREE,
+  KEY `productName` (`name`) USING BTREE,
+  CONSTRAINT `fk_product_1` FOREIGN KEY (`category`) REFERENCES `category` (`catid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES ('AV-CB-01', 'BIRDS', 'Amazon Parrot', '<image src=\"images/bird2.gif\">', 'Great companion for up to 75 years');
-INSERT INTO `product` VALUES ('AV-SB-02', 'BIRDS', 'Finch', '<image src=\"/images/bird1.gif\">', 'Great stress reliever');
-INSERT INTO `product` VALUES ('FI-FW-01', 'FISH', 'Koi', '<image src=\"../images/fish3.gif\">', 'Fresh Water fish from Japan');
-INSERT INTO `product` VALUES ('FI-FW-02', 'FISH', 'Goldfish', '<image src=\"../../images/fish2.gif\">', 'Fresh Water fish from China');
-INSERT INTO `product` VALUES ('FI-SW-01', 'FISH', 'Angelfish', '<image src=\"/images/fish1.gif\">', 'Salt Water fish from Australia');
-INSERT INTO `product` VALUES ('FI-SW-02', 'FISH', 'Tiger Shark', '<image src=\"/images/fish4.gif\">', 'Salt Water fish from Australia');
-INSERT INTO `product` VALUES ('FL-DLH-02', 'CATS', 'Persian', '<image src=\"/images/cat1.gif\">', 'Friendly house cat, doubles as a princess');
-INSERT INTO `product` VALUES ('FL-DSH-01', 'CATS', 'Manx', '<image src=\"/images/cat2.gif\">', 'Great for reducing mouse populations');
-INSERT INTO `product` VALUES ('K9-BD-01', 'DOGS', 'Bulldog', '<image src=\"/images/dog2.gif\">', 'Friendly dog from England');
-INSERT INTO `product` VALUES ('K9-CW-01', 'DOGS', 'Chihuahua', '<image src=\"/images/dog4.gif\">', 'Great companion dog');
-INSERT INTO `product` VALUES ('K9-DL-01', 'DOGS', 'Dalmation', '<image src=\"/images/dog5.gif\">', 'Great dog for a Fire Station');
-INSERT INTO `product` VALUES ('K9-PO-02', 'DOGS', 'Poodle', '<image src=\"/images/dog6.gif\">', 'Cute dog from France');
-INSERT INTO `product` VALUES ('K9-RT-01', 'DOGS', 'Golden Retriever', '<image src=\"/images/dog1.gif\">', 'Great family dog');
-INSERT INTO `product` VALUES ('K9-RT-02', 'DOGS', 'Labrador Retriever', '<image src=\"/images/dog5.gif\">', 'Great hunting dog');
-INSERT INTO `product` VALUES ('RP-LI-02', 'REPTILES', 'Iguana', '<image src=\"/images/lizard1.gif\">', 'Friendly green friend');
-INSERT INTO `product` VALUES ('RP-SN-01', 'REPTILES', 'Rattlesnake', '<image src=\"/images/lizard1.gif\">', 'Doubles as a watch dog');
+BEGIN;
+INSERT INTO `product` VALUES ('AV-CB-01', 'BIRDS', 'Amazon Parrot', '../images/bird2.gif', 'Great companion for up to 75 years');
+INSERT INTO `product` VALUES ('AV-SB-02', 'BIRDS', 'Finch', '../images/bird1.gif', 'Great stress reliever');
+INSERT INTO `product` VALUES ('FI-FW-01', 'FISH', 'Koi', '../images/fish3.gif', 'Fresh Water fish from Japan');
+INSERT INTO `product` VALUES ('FI-FW-02', 'FISH', 'Goldfish', '../images/fish2.gif', 'Fresh Water fish from China');
+INSERT INTO `product` VALUES ('FI-SW-01', 'FISH', 'Angelfish', '../images/fish1.gif', 'Salt Water fish from Australia');
+INSERT INTO `product` VALUES ('FI-SW-02', 'FISH', 'Tiger Shark', '../images/fish4.gif', 'Salt Water fish from Australia');
+INSERT INTO `product` VALUES ('FL-DLH-02', 'CATS', 'Persian', '../images/cat1.gif', 'Friendly house cat, doubles as a princess');
+INSERT INTO `product` VALUES ('FL-DSH-01', 'CATS', 'Manx', '../images/cat2.gif', 'Great for reducing mouse populations');
+INSERT INTO `product` VALUES ('K9-BD-01', 'DOGS', 'Bulldog', '../images/dog2.gif', 'Friendly dog from England');
+INSERT INTO `product` VALUES ('K9-CW-01', 'DOGS', 'Chihuahua', '../images/dog4.gif', 'Great companion dog');
+INSERT INTO `product` VALUES ('K9-DL-01', 'DOGS', 'Dalmation', '../images/dog5.gif', 'Great dog for a Fire Station');
+INSERT INTO `product` VALUES ('K9-PO-02', 'DOGS', 'Poodle', '../images/dog6.gif', 'Cute dog from France');
+INSERT INTO `product` VALUES ('K9-RT-01', 'DOGS', 'Golden Retriever', '../images/dog1.gif', 'Great family dog');
+INSERT INTO `product` VALUES ('K9-RT-02', 'DOGS', 'Labrador Retriever', '../images/dog5.gif', 'Great hunting dog');
+INSERT INTO `product` VALUES ('RP-LI-02', 'REPTILES', 'Iguana', '../images/lizard1.gif', 'Friendly green friend');
+INSERT INTO `product` VALUES ('RP-SN-01', 'REPTILES', 'Rattlesnake', '../images/lizard1.gif', 'Doubles as a watch dog');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for profile
 -- ----------------------------
 DROP TABLE IF EXISTS `profile`;
-CREATE TABLE `profile`  (
-  `userid` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `langpref` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `favcategory` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `mylistopt` tinyint(1) NULL DEFAULT NULL,
-  `banneropt` tinyint(1) NULL DEFAULT NULL,
+CREATE TABLE `profile` (
+  `userid` varchar(80) NOT NULL,
+  `langpref` varchar(80) NOT NULL,
+  `favcategory` varchar(30) DEFAULT NULL,
+  `mylistopt` tinyint(1) DEFAULT NULL,
+  `banneropt` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`userid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of profile
 -- ----------------------------
+BEGIN;
 INSERT INTO `profile` VALUES ('a', 'japanese', 'DOGS', NULL, NULL);
 INSERT INTO `profile` VALUES ('ACID', 'english', 'CATS', 1, 1);
 INSERT INTO `profile` VALUES ('j2ee', 'English', 'DOGS', 1, 1);
 INSERT INTO `profile` VALUES ('xyz', 'japanese', 'DOGS', NULL, NULL);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for sequence
 -- ----------------------------
 DROP TABLE IF EXISTS `sequence`;
-CREATE TABLE `sequence`  (
-  `typename` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+CREATE TABLE `sequence` (
+  `typename` varchar(30) NOT NULL,
   `nextid` int(11) NOT NULL,
   PRIMARY KEY (`typename`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of sequence
 -- ----------------------------
+BEGIN;
 INSERT INTO `sequence` VALUES ('cartnum', 1000);
 INSERT INTO `sequence` VALUES ('linenum', 1052);
 INSERT INTO `sequence` VALUES ('ordernum', 1021);
+COMMIT;
 
 -- ----------------------------
 -- Table structure for signon
 -- ----------------------------
 DROP TABLE IF EXISTS `signon`;
-CREATE TABLE `signon`  (
-  `username` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `password` varchar(25) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+CREATE TABLE `signon` (
+  `username` varchar(25) NOT NULL,
+  `password` varchar(25) NOT NULL,
   PRIMARY KEY (`username`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of signon
 -- ----------------------------
+BEGIN;
 INSERT INTO `signon` VALUES ('a', 'a');
 INSERT INTO `signon` VALUES ('ACID', 'ACID');
 INSERT INTO `signon` VALUES ('admin', '1234');
 INSERT INTO `signon` VALUES ('j2ee', 'j2ee');
 INSERT INTO `signon` VALUES ('xyz', 'xyz');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for supplier
 -- ----------------------------
 DROP TABLE IF EXISTS `supplier`;
-CREATE TABLE `supplier`  (
+CREATE TABLE `supplier` (
   `suppid` int(11) NOT NULL,
-  `name` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `status` varchar(2) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `addr1` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `addr2` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `city` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `state` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `zip` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `phone` varchar(80) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(80) DEFAULT NULL,
+  `status` varchar(2) NOT NULL,
+  `addr1` varchar(80) DEFAULT NULL,
+  `addr2` varchar(80) DEFAULT NULL,
+  `city` varchar(80) DEFAULT NULL,
+  `state` varchar(80) DEFAULT NULL,
+  `zip` varchar(5) DEFAULT NULL,
+  `phone` varchar(80) DEFAULT NULL,
   PRIMARY KEY (`suppid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of supplier
 -- ----------------------------
+BEGIN;
 INSERT INTO `supplier` VALUES (1, 'XYZ Pets', 'AC', '600 Avon Way', '', 'Los Angeles', 'CA', '94024', '212-947-0797');
 INSERT INTO `supplier` VALUES (2, 'ABC Pets', 'AC', '700 Abalone Way', '', 'San Francisco ', 'CA', '94024', '415-947-0797');
+COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
