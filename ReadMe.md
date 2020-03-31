@@ -44,3 +44,15 @@
 - 购物车内商品数量错误弹出弹窗提醒并不执行
 - 购物车提醒弹窗的数秒消失
 - 修改searchProduct.js使运行
+- 购物车内商品数量改为0甚至负数后对应商品栏消失
+- 数据库内修改Item表格，删去listPrice 添加 quantity,以及修改对应的mapper service
+
+## 登陆
+###### 前端也来写API了(ฅ´ω`ฅ)
+##### -  请求类型: post
+|请求页面|链接字段|解释|
+|---|---|---|
+|signOnForm|`/account/signOnForm`|登陆|
+|newAccountForm|`/caaccountrt/newAccountForm`|新建|
+|editAccountForm|`/account/editAccountForm`|编辑|
+

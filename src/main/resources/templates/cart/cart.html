@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <title>MyPetStore</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen" />
     <title>Title</title>
     <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen" />
     <script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
@@ -10,6 +12,8 @@
 </head>
 <body>
 <header th:replace="common/top"></header>
+<script type="text/javascript" src="../js/updateCart.js"></script>
+<script type="text/javascript" th:inline="javascript">
 
 <script type="text/javascript" th:inline="javascript">
 //弹出添加成功窗口
@@ -52,6 +56,16 @@ var cartId = [[${cart.cartId}]];
                     <td colspan="9"><b>Your cart is empty.</b></td>
                 </tr>
 
+<!--                <tr th:if="${cartItem.item.product.categoryId != judgeTemp }">-->
+<!--                    <td colspan="9">-->
+<!--                        <b>-->
+<!--                            Category:-->
+<!--                            <a th:href="'/catalog/viewCategory?categoryId='+${cartItem.item.product.categoryId}"-->
+<!--                               th:attr="judgeTemp=${cartItem.item.product.categoryId}">${cartItem.item.product.categoryId}-->
+<!--                            </a>-->
+<!--                        </b>-->
+<!--                    </td>-->
+<!--                </tr>-->
 
                 <div th:each="cartItem:${cartItemList}">
                 <tr th:if="!${judgeTemp eq cartItem.categoryId} " >
