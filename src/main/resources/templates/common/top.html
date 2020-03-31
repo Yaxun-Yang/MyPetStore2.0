@@ -8,7 +8,7 @@
 <body>
 <script type="text/javascript">
     window.onblur=function(){
-        document.title="你快回来QAQ";
+        document.title="你快回来( •̀д•́)っ";
     };
     window.onfocus=function () {
         document.title="MyPetStore";
@@ -19,7 +19,7 @@
 
             <div id="Logo">
                 <div id="LogoContent">
-                    <a href="main">
+                    <a href="/catalog/main">
                         <img src="../images/logo-topbar.gif"/>
                     </a>
                 </div>
@@ -37,6 +37,7 @@
                         <a href="viewMyAccount">My Account</a>
                     </c:if>
                     <c:if test="${sessionScope.account == null}">
+                        <img align="middle" src="../images/separator.gif"/>
                         <a href="signOn">Sign In</a>
                     </c:if>
 
@@ -55,29 +56,29 @@
             </div>
 
             <div id="QuickLinks">
-                <a href="viewCategory?categoryId=FISH">
+                <a href="/catalog/viewCategory?categoryId=FISH">
                     <img src="../images/sm_fish.gif"/>
                 </a>
 
                 <img src="../images/separator.gif"/>
 
-                <a href="viewCategory?categoryId=DOGS">
+                <a href="/catalog/viewCategory?categoryId=DOGS">
                     <img src="../images/sm_dogs.gif"/>
                 </a>
 
                 <img src="../images/separator.gif"/>
 
-                <a href="viewCategory?categoryId=REPTILES">
+                <a href="/catalog/viewCategory?categoryId=REPTILES">
                     <img src="../images/sm_reptiles.gif"/>
                 </a>
 
                 <img src="../images/separator.gif"/>
-                <a href="viewCategory?categoryId=CATS">
+                <a href="/catalog/viewCategory?categoryId=CATS">
                     <img src="../images/sm_cats.gif"/>
                 </a>
 
                 <img src="../images/separator.gif"/>
-                <a href="viewCategory?categoryId=BIRDS">
+                <a href="/catalog/viewCategory?categoryId=BIRDS">
                     <img src="../images/sm_birds.gif"/>
                 </a>
 

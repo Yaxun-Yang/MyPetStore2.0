@@ -23,6 +23,7 @@
 |item|`/catalog/viewItem`|
 |cart|`/cart/cart`|
 
+
 ## 功能请求
 |功能描述|链接字段|参数|
 |---|---|---|
@@ -33,3 +34,13 @@
 - 购物车页面每个商品提供单独的加一减一按钮
 - 购物车内商品数量改为0甚至负数后对应商品栏消失
 - 数据库内修改Item表格，删去listPrice 添加 quantity,以及修改对应的mapper service
+
+## 登陆
+###### 前端也来写API了(ฅ´ω`ฅ)
+##### -  请求类型: post
+|请求页面|链接字段|解释|
+|---|---|---|
+|signOnForm|`/account/signOnForm`|登陆|
+|newAccountForm|`/caaccountrt/newAccountForm`|新建|
+|editAccountForm|`/account/editAccountForm`|编辑|
+
