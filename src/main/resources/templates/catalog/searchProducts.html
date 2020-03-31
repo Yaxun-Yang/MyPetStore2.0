@@ -23,8 +23,8 @@
 
             <tr th:each="product:${productList}">
                 <td>
-                    <label><img th:src="${product.descriptionImage}"></label>
-                    <label th:text="${product.descriptionText}"></label>
+                    <label><img th:src="${product.image}"></label>
+                    <label th:text="${product.text}"></label>
                 </td>
                 <td>
                     <b>

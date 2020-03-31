@@ -3,107 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen" />
+    <link rel="StyleSheet" href="/css/jpetstore.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
+    <script src="/js/searchProduct.js"></script>
+
 </head>
 <body>
 <header th:replace="common/top"></header>
-<!--<script type="text/javascript" src="../js/updateCart.js"></script>-->
-<!--<script type="text/javascript" th:inline="javascript">-->
 
-<!--    var msg =[[${msg}]];-->
-<!--    if(msg != null)-->
-<!--        alert(msg);-->
+<script type="text/javascript" th:inline="javascript">
+//弹出添加成功窗口
+    var msg =[[${msg}]];
+var cartId = [[${cart.cartId}]];
+    if(msg != null)
+        alert(msg);
 
-<!--</script>-->
-
+</script>
+<script type="text/javascript" src="/js/updateCart.js"th:inline="javascript" ></script>
 
 <div id="Content">
-<!--    <label  th:text="${msg}" >aaa</label>-->
+
     <div id="BackLink">
         <a href="/catalog/main">Return to Main Menu</a>
     </div>
 
     <div id="Catalog">
-        只要这段文字能显示就好了
-<!--        <form action="newOrderForm" method="post">-->
-<!--            <h2>Shopping Cart</h2>-->
-<!--            <table>-->
-<!--                <tr>-->
-<!--                    <th>-->
-<!--                        <input type="checkbox" id="allCheck">-->
-<!--                        <b>Check All</b>-->
-<!--                    </th>-->
-<!--                    <th><b>Item ID</b></th>-->
-<!--                    <th><b>Product ID</b></th>-->
-<!--                    <th><b>Description</b></th>-->
-<!--                    <th><b>In Stock?</b></th>-->
-<!--                    <th><b>Quantity</b></th>-->
-<!--                    <th><b>List Price</b></th>-->
-<!--                    <th><b>Total Cost</b></th>-->
-<!--                    <th><b>Remove</b></th>-->
-<!--                </tr>-->
 
-<!--                <tr th:if="${cartShow.numberOfItems == 0}" >-->
-<!--                    <td colspan="9"><b>Your cart is empty.</b></td>-->
-<!--                </tr>-->
+        <form action="/cart/viewNewOrderForm" method="post" >
+            <h2>Shopping Cart</h2>
 
-<!--                <tr th:attr="judgeTemp=null,num=0,itemNum=0" th:each="cartItem:${cart.cartItems}" >-->
-<!--                </tr>-->
+            <table th:with="judgeTemp=${cart.cartId}">
+                <tr>
+                    <th>
+                        <input type="checkbox" id="allCheck"/>
+                        <b>Check All</b>
+                    </th>
+                    <th><b>Item ID</b></th>
+                    <th><b>Product ID</b></th>
+                    <th><b>Description</b></th>
+                    <th><b>In Stock?</b></th>
+                    <th><b>Quantity</b></th>
+                    <th><b>List Price</b></th>
+                    <th><b>Total Cost</b></th>
+                    <th><b>Remove</b></th>
+                </tr>
 
-<!--                <tr th:if="${cartItem.item.product.categoryId != judgeTemp }">-->
-<!--                    <td colspan="9">-->
-<!--                        <b>-->
-<!--                            Category:-->
-<!--                            <a th:href="'/catalog/viewCategory?categoryId='+${cartItem.item.product.categoryId}"-->
-<!--                               th:attr="judgeTemp=${cartItem.item.product.categoryId}">${cartItem.item.product.categoryId}-->
-<!--                            </a>-->
-<!--                        </b>-->
-<!--                    </td>-->
-<!--                </tr>-->
+                <tr th:if="${cartItemNumber == 0}" >
+                    <td colspan="9"><b>Your cart is empty.</b></td>
+                </tr>
 
-<!--                <tr>-->
-<!--                    <td>-->
-<!--                        <input type="checkbox" name="${cartItem.item.itemId}_check" class="${cartItem.item.product.categoryId}">-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <a th:href="'/catalog/viewItem?itemId='+${cartItem.item.itemId}">${cartItem.item.itemId}</a>-->
-<!--                    </td>-->
-<!--                    <td th:text="${cartItem.item.product.productId}">-->
-<!--                        ${cartItem.item.product.productId}-->
-<!--                    </td>-->
-<!--                    <td th:text="${cartItem.item.attribute1}">-->
-<!--                        ${cartItem.item.attribute1}-->
-<!--                    </td>-->
-<!--                    <td th:text="${cartItem.inStock}">-->
-<!--                        ${cartItem.inStock}-->
-<!--                    </td>-->
-<!--                    <td th:attr="num=${num+1}">-->
-<!--                        <input type="text" class="quantity" name="${num}" class="${cartItem.item.product.categoryId}"/>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <span>$${cartItem.item.listPrice}</span>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        $<span class="total" id="${cartItem.item.itemId}">${cartItem.totalCost}</span>-->
-<!--                    </td>-->
-<!--                    <td>-->
-<!--                        <a class="Button" th:href="'/catalog/removeItemCart?workingItemId='+${cartItem.item.itemId}">Remove</a>-->
-<!--                    </td>-->
-<!--                </tr>-->
 
-<!--                <tr>-->
-<!--                    <td colspan="9">Sub Total:-->
-<!--                        $<span id="subTotal">${cartShow.subTotal}</span>-->
-<!--                    </td>-->
-<!--                </tr>-->
-<!--            </table>-->
-<!--            <div th:if="${cartShow.numberOfItems > 0}">-->
-<!--                <input type="submit" value="Proceed to Checkout">-->
-<!--            </div>-->
-<!--        </form>-->
+                <div th:each="cartItem:${cartItemList}">
+                <tr th:if="!${judgeTemp eq cartItem.categoryId} " >
+                    <td colspan="9">
+                        <b>
+                            Category:
+                            <a th:href="'/catalog/viewCategory?categoryId='+${cartItem.categoryId}"
+                               th:class="${judgeTemp} ? ${ cartItem.categoryId}" th:text=" ${cartItem.categoryId}">
+                                ${cartItem.categoryId}
+                            </a>
+                        </b>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>
+                        <input type="checkbox" th:name="${cartItem.itemId}+'_check'" th:class="${cartItem.categoryId}">
+                    </td>
+                    <td>
+                        <a th:href="'/catalog/viewItem?itemId='+${cartItem.itemId}"th:text="${cartItem.itemId}">${cartItem.itemId}</a>
+                    </td>
+                    <td>
+                        <a th:href="'/catalog/viewProduct?productId='+${cartItem.item.productId}" th:text="${cartItem.item.productId}">${cartItem.item.productId}</a>
+                    </td>
+                    <td th:text="${cartItem.item.attribute1}">
+                        ${cartItem.item.attribute1}
+                    </td>
+                    <td th:text="${#strings.equals(cartItem.item.status,'P')}?'TRUE':'FALSE'">
+                        ${cartItem.item.status}
+                    </td>
+                    <td >
+                        <input type="text" class="quantity" th:id="${cartItem.itemId}" th:value="${cartItem.quantity}"/>
+                    </td>
+                    <td th:text="${cartItem.item.unitCost}">
+                        $<span>${cartItem.item.unitCost}</span>
+                    </td>
+                    <td>
+                        $<span class="total" th:name="${cartItem.itemId}" th:text="${cartItem.quantity*cartItem.item.unitCost}">${cartItem.totalCost}</span>
+                    </td>
+                    <td>
+                        <a class="Button" th:href="'/catalog/removeItemCart?workingItemId='+${cartItem.item.itemId}">Remove</a>
+                    </td>
+                </tr>
+                </div>
+                <tr>
+                    <td colspan="9">Sub Total:
+                        $<span id="subTotal" th:text="${subTotal}">${subTotal}</span>
+                    </td>
+                </tr>
+            </table>
+            <div th:if="${cartItemNumber > 0}">
+                <input type="submit" value="Proceed to Checkout">
+            </div>
+
+        </form>
     </div>
 
-<!--    <div id="Separator">&nbsp;</div>-->
+    <div id="Separator">&nbsp;</div>
 </div>
 
 <footer th:replace="common/bottom"></footer>

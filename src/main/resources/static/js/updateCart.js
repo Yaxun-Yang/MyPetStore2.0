@@ -2,8 +2,8 @@
 $(function()
 {
     //获取所有的除了全选的checkbox
-
     var cks= $(':checkbox:gt(0)');
+
     //给全选checkbox绑定click事件
     var allCheck=$('#allCheck').click(
         function()
@@ -18,7 +18,7 @@ $(function()
         {
             if(!$(this).prop('checked'))
             {
-                //有不是选中的则修改全选的未非选中
+                //有不是选中的则修改全选的为非选中
                 allCheck.prop('checked',false);
             }
             else
@@ -62,23 +62,30 @@ $(function()
 // });
 
 $(function () {
+
+
     $(".quantity").bind('input propertychange',function () {
+
         var quantity = this.value;
         var workingItemId = this.id;
-        var num = this.name;
+
+     //   alert(quantity+","+workingItemId+","+cartId);
         $.ajax({
             type: "POST",
-            url: "cart/updateItemQuantity",
+          //  url: "/cart/updateItemQuantity?itemId="+workingItemId+"&quantity="+quantity,
+            url: "/cart/updateItemQuantity",
             dataType:"json",
             data:{
-               " itemId": workingItemId,
-                "quantity":quantity
+               "itemId": workingItemId,
+                "quantity":quantity,
+                "cartId":cartId
             },
             success: function (result) {
-
+               // alert(result.totalCost);
                 $("#subTotal").text(result.subTotal);
-                $(".total").eq(num).text(result.totalCost);
 
+              //  $(".total").text(result.totalCost);
+                $("[name='"+workingItemId+"']").text(result.totalCost);
             }
         })
     })

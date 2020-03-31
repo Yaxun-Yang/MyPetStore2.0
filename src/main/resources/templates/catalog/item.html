@@ -10,7 +10,7 @@
 <header th:replace="common/top"></header>
 <script type="text/javascript" th:inline="javascript">
 
-    var msg =[[${msg}]]);
+    var msg =[[${msg}]];
     if(msg != null)
         alert(msg);
 
@@ -50,7 +50,7 @@
             <tr>
                 <td th:text="'$'+${#numbers.formatDecimal(item.unitCost,1,2)}">Item List Price</td>
             </tr>
-            <tr>
+            <tr th:if="${#strings.equals(item.status,'P')}">
                 <td><a th:href="'/cart/addItem?itemId='+${item.itemId}" >Add to Cart</a></td>
             </tr>
         </table>

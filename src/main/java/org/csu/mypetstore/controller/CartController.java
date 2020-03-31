@@ -40,7 +40,7 @@ public class CartController {
             model.addAttribute("cartItemList",cartItemList);
             return "cart/cart";
         }
-       return "redirect:/account/signOn";
+       return "redirect:/account/viewSignOn";
     }
 
     //添加商品到购物车，已登录则跳出登录成功提醒，否则跳转登录页面
@@ -60,13 +60,19 @@ public class CartController {
             msg+="已添加到您的购物车";
            // System.out.println("aaa"+msg);
             model.addAttribute("msg",msg);
-            System.out.println(model.getAttribute("msg"));
+           // System.out.println(model.getAttribute("msg"));
             Cart cart = cartService.getCart(account.getUsername());
             cartService.addItem(cart.getCartId(),itemId);
+            List<CartItem> cartItemList= cartService.getCartItemList(cart.getCartId());
+            model.addAttribute("cartItemNumber",cartItemList.size());
+          //  System.out.println(cartItemList.size());
+            model.addAttribute("cart",cart);
+            model.addAttribute("cartItemList",cartItemList);
+            model.addAttribute("subTotal",cartService.getCartTotalCost(cart.getCartId()));
            // return "redirect:/catalog/viewItem?itemId="+itemId;
             return "cart/cart";
         }
-        return "redirect:/account/signOn";
+        return "redirect:/account/viewSignOn";
     }
 
     //特定商品数量减少一
@@ -79,16 +85,17 @@ public class CartController {
     //交互json数据
     @PostMapping("/updateItemQuantity")
     @ResponseBody
-    public JSONObject updateItemQuantity(@RequestParam String itemId,@RequestParam int quantity, Model model)
+    public JSONObject updateItemQuantity(@RequestParam String cartId,@RequestParam String itemId,@RequestParam int quantity, Model model)
     {
-        Cart cart= (Cart) model.getAttribute("cart");
 
-        cartService.updateCartItemQuantity(cart.getCartId(),itemId,quantity);
+
+        System.out.println(itemId+","+quantity+","+cartId);
+        cartService.updateCartItemQuantity(cartId,itemId,quantity);
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("quantity",quantity);
-        jsonObject.put("totalCost",cartService.getCartItemTotalCost(cart.getCartId(),itemId));
-        jsonObject.put("subTotal", cartService.getCartTotalCost(cart.getCartId()));
+        jsonObject.put("totalCost",cartService.getCartItemTotalCost(cartId,itemId));
+        jsonObject.put("subTotal", cartService.getCartTotalCost(cartId));
 
         return jsonObject;
     }

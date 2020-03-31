@@ -8,7 +8,24 @@ public class CartItem {
     private String itemId;
     private String cartId;
     private int quantity;
+    private String categoryId;
+    private Item item;
 
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public int getQuantity() {
         return quantity;

@@ -8,9 +8,14 @@ import java.util.Map;
 
 @Repository
 public interface ItemMapper {
-    void updateInventoryQuantity(String itemId, int increment);
+    void updateInventoryQuantity(String itemId, int quantity);
 
-    int getInventoryQuantity(String itemId);
+    int  getInventoryQuantity(String itemId);
+
+    void setItemStatusP(String itemId);
+
+    void setItemStatusN(String itemId);
+
 
     List<Item> getItemListByProduct(String productId);
 

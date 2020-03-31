@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -74,4 +75,12 @@ public class CatalogController {
         return "redirect:catalog/product?productId="+((Product)model.getAttribute("product")).getProductId();
     }
 
+    @PostMapping("/viewSearchProducts")
+    public String viewSearchProducts(String keyword,Model model)
+    {
+
+        List<Product> productList = catalogService.searchProductList(keyword);
+        model.addAttribute("productList",productList);
+        return "catalog/searchProducts";
+    }
 }

@@ -35,14 +35,26 @@
     </select>
 
     <select id="getInventoryQuantity" resultType="int">
-        SELECT QTY AS value
+        SELECT QTY
         FROM INVENTORY
         WHERE ITEMID = #{itemId}
     </select>
 
     <update id="updateInventoryQuantity" >
-        UPDATE INVENTORY SET
-            QTY = QTY - #{increment}
+        UPDATE INVENTORY
+        SET QTY =  #{quantity}
         WHERE ITEMID = #{itemId}
+    </update>
+
+    <update id="setItemStatusP">
+        UPDATE ITEM
+        SET STATUS = P
+        WHERE ITEMID = #{itemId}
+    </update>
+
+    <update id="setItemStatusN">
+        UPDATE ITEM
+        SET STATUS = N
+        WHERE  ITEMID = #{itemId}
     </update>
 </mapper>
