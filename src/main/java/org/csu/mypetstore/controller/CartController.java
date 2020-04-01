@@ -75,12 +75,6 @@ public class CartController {
         return "redirect:/account/viewSignOn";
     }
 
-    //特定商品数量减少一
-    @PostMapping("/reduceItemQuantity")
-    public  void reduceItemQuantity(String itemId,Model model)
-    {
-        //似乎不需要这个功能，或者在前端实现会更简单
-    }
     //修改商品数量
     //交互json数据
     @PostMapping("/updateItemQuantity")
@@ -99,6 +93,15 @@ public class CartController {
 
         return jsonObject;
     }
+
+    @PostMapping("/viewCheckOut")
+    public String viewCheckOut(Model model)
+    {
+
+        return "/cart/checkOut";
+    }
+
+
 
 }
 

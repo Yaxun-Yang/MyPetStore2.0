@@ -8,14 +8,7 @@
 </head>
 <body>
 <header th:replace="common/top"></header>
-<script type="text/javascript" th:inline="javascript">
 
-    var msg =[[${msg}]];
-    if(msg != null)
-        alert(msg);
-
-</script>
-<label  th:text="${msg}" >aaa</label>
 <div id="Content">
     <div id="BackLink">
         <a th:href="'/catalog/viewProduct?productId='+${item.productId}">
