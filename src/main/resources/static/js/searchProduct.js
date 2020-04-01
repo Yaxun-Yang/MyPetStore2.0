@@ -162,7 +162,7 @@ function createXMLHttpRequest()
 }
 
 var keyword = document.getElementById('keyword').value;
-sendRequest("findResultServlet?keyword=" + keyword);
+sendRequest("/catalog/viewSearchProducts?keyword=" + keyword);
 
 function sendRequest(url) {
     createXMLHttpRequest();

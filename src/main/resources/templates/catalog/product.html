@@ -43,7 +43,7 @@
                 <td th:text="'$'+${#numbers.formatDecimal(item.unitCost,1,2)}">
                     Item Unit Cost
                 </td>
-                <td>
+                <td th:if="${#strings.equals(item.status,'P')}">
                     <a class="Button" th:href="'/cart/addItem?itemId='+${item.itemId}">
                         Add to Cart
                     </a>
