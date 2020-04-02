@@ -14,6 +14,9 @@ public class Item {
     private String attribute4;
     private String attribute5;
 
+    //order
+    private int quantity;
+
     public String getItemId() {
         return itemId;
     }
@@ -92,6 +95,15 @@ public class Item {
 
     public void setAttribute5(String attribute5) {
         this.attribute5 = attribute5.trim();
+    }
+
+    //order里提到的
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
 }

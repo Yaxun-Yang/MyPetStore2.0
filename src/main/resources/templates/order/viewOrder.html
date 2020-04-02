@@ -10,18 +10,18 @@
 <div id="Content">
 
     <div id="BackLink">
-        <a href="main">
+        <a href="/catalog/main">
             Return to Main Menu
         </a>
     </div>
 
     <div id="Catalog">
-
         <table>
             <tr>
-                <th align="center" colspan="2">
+<!--                <th align="center" colspan="2" th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd HH:mm:ss')}">-->
                     Order #${sessionScope.order.orderId}
-                    <fmt:formatDate value="${sessionScope.order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" />
+                    <!--                    ${#dates.format(coupon.receiveDayTime,'yyyy-mm-dd HH：mm：ss'}-->
+                    <!--                    <fmt:formatDate value="${sessionScope.order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" />-->
                 </th>
             </tr>
             <tr>
