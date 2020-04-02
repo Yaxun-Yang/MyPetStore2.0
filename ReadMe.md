@@ -6,10 +6,7 @@
 - addItem的购物车跳转(小弹窗弹出成功，结果前端还逼着后端去实现数秒消失：(((
 - 购物车实时更新(引入JSON)
 - 购物车checkedAll绑定
-
-## 待解决的问题（SOS）
-- 购物车按照 categorty 分类展示（thymeleaf如何给变量赋值）
-- model的生命周期，session 的替代办法
+- 登录发送短信验证码（阿里云短信服务）
 
 
 ## 全局信息说明
@@ -28,32 +25,35 @@
 |请求页面|链接字段|参数|需要数据|表单提交|
 |--- |---|---|---|---|
 |main|`/catalog/main`||||
-|category|`/catalog/viewCategory`|categoryId|category productList||
-|product|`/catalog/viewProduct`|productId|prodcut itemList||
-|item|`/catalog/viewItem`|itemId|item product itemQuantity||
-|searchProducts|`/catalog/viewSearchProducts`|keywords|productList||
-|cart|`/cart/viewCart`||cart cartItemNumber cartItemList subTol |`/cart/viewCheckOut`|
-|signOnForm|`/account/viewSignOnForm`|
-|newAccountForm|`/account/viewNewAccountForm`|
-|editAccountForm|`/account/viewEditAccountForm`|
+|category|`/catalog/viewCategory`|String:categoryId|Category:category List\<Product\>productList||
+|product|`/catalog/viewProduct`|String:productId|Product:product List\<Item\>itemList||
+|item|`/catalog/viewItem`|String:itemId|Item:item Product:product int:itemQuantity||
+|searchProducts|`/catalog/viewSearchProducts`|String:keyword|List\<Product\>:productList||
+|cart|`/cart/viewCart`||Cart:cart int:cartItemNumber List\<CartItem\>cartItemList BigDecimal:subTol |`/cart/viewCheckOut`|
+|signInForm|`/account/viewSignInForm`||||
+|newAccountForm|`/account/viewNewAccountForm`||||
+|editAccountForm|`/account/viewEditAccountForm`||||
 
 ## 表单提交请求
 请求类型皆为post
 
-|表单提交页面|提交后的跳转页面|链接字段|需要数据|
-|---|---|---|---|
-|cart|checkOut|`/cart/viewCheckOut`|cartItemList subTol|
+|表单提交页面|链接字段|需要数据|
+|---|---|---|
+|cart|`/cart/viewCheckOut`|List\<CartItem\>:cartItemList BigDecimal:subTol|
+|signInForm|`/account/postSignInForm`||
 
 ## 功能请求
-|功能描述|请求类型|链接字段|参数|
-|---|---|---|---|
-|购物车中商品数量实时更新|post|`/cart/updateItemQuantity`|String:itemId, int:quantity|
-|向购物车中添加新商品|get|`/cart/addItem`|String:itemId|
+|功能描述|请求类型|链接字段|参数|返回数据（JSON格式）|
+|---|---|---|---|---|
+|购物车中商品数量实时更新|post|`/cart/updateItemQuantity`|String:itemId int:quantity|int:quantity BigDecimal:totCost BigDecimal:subTol|
+|向购物车中添加新商品|get|`/cart/addItem`|String:itemId||
+|向用户手机发送验证码|post|`/account/sendVerificationCode`|String:phoneNumber String:username String:password||
 
 ## 关于功能构想（将实现）
 - 购物车内商品数量错误弹出弹窗提醒并不执行
 - 购物车提醒弹窗的数秒消失
 - 修改searchProduct.js使运行
+- 购物车页面item以map形式输出
 
 
 
