@@ -83,7 +83,7 @@ public class CartController {
     {
 
 
-        System.out.println(itemId+","+quantity+","+cartId);
+    //    System.out.println(itemId+","+quantity+","+cartId);
         cartService.updateCartItemQuantity(cartId,itemId,quantity);
 
         JSONObject jsonObject = new JSONObject();

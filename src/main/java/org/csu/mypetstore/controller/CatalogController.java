@@ -7,21 +7,21 @@ import org.csu.mypetstore.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/catalog")
+@SessionAttributes("account")
 public class CatalogController {
     @Autowired
     private CatalogService catalogService;
 
     @GetMapping("/main")
-    public String viewMain()
+    public String viewMain(Model model)
     {
+        model.addAttribute("account",null);
         return"/catalog/main";
     }
 

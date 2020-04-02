@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>MyPetStore</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen" />
+
+    <script src="/js/searchProduct.js"></script>
+    <script src="/js/signIn.js" type="text/javascript"></script>
+</head>
+<body>
+
+<header th:replace="common/top"></header>
+<div id="Content">
+    <div id="Catalog">
+    <form action="/account/postSignInForm" method="post">
+        <p>Please enter your username，password
+            <br>
+            and verify your identity on your phone.
+            <br>
+            Username:
+            <input type="text" name="username" value="j2ee"/>
+            <br>
+            Password:
+            <input type="password" name="password" value="j2ee"/>
+            <br>
+            Phone Number:
+            <input type="text" id="phoneNumber" value="18307331878"/>
+            <br>
+            <a class="Button" name="sendButton" href="javascript:void(0)" onclick="sendVerificationCode()">send verification code to phone</a>
+            <br>
+            Verification Code:
+            <input type="text" name="verifyCode" />
+            <br>
+            <br>
+                <h4 th:if="${msg} != null" style="color:red"th:text="${msg}">${msg}</h4>
+        </p>
+        <input type="submit" name="signIn" value="Login">
+    </form>
+    Need a user name and password?
+    <a href="account/viewNewAccountForm">Register Now!</a>
+    </div>
+</div>
+
+<footer th:replace="common/bottom"></footer>
+</body>
+</html>

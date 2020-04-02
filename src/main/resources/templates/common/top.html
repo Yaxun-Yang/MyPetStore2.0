@@ -29,7 +29,7 @@
 
             <div id="Menu">
                 <div id="MenuContent">
-                    <c:if test="${sessionScope.account != null}">
+                    <span th:if="${account} != null">
                         <a href="viewCart">
                             <img align="middle" name="img_cart" src="../images/cart.gif"/>
                         </a>
@@ -37,11 +37,11 @@
                         <a href="signOut">Sign Out</a>
                         <img align="middle" src="../images/separator.gif"/>
                         <a href="viewMyAccount">My Account</a>
-                    </c:if>
-                    <c:if test="${sessionScope.account == null}">
+                    </span>
+                    <span th:if="${account} == null">
                         <img align="middle" src="../images/separator.gif"/>
-                        <a href="signOn">Sign In</a>
-                    </c:if>
+                        <a href="/account/viewSignIn">Sign In</a>
+                    </span>
 
                     <img align="middle" src="../images/separator.gif"/>
                     <a href="help.html">?</a>

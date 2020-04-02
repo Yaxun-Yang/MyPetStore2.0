@@ -36,9 +36,9 @@ function processResponse() {
             var div1 = document.getElementById('usernameMsg');
 
             if (responseInfo == "Exist") {
-                div1.innerHTML = "<h4 color='red'>用户名已存在</>";
+                div1.innerHTML = "<h4 color='red'>用户名已存在</h4>";
             } else {
-                div1.innerHTML = "<h4 color='green'>用户名可用</>";
+                div1.innerHTML = "<h4 color='green'>用户名可用</h4>";
             }
         }
     }
