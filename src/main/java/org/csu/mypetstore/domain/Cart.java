@@ -24,7 +24,23 @@ public class Cart {
         this.cartId = cartId;
     }
 
-
+    // order里面需要的
+    private final List<CartItem> itemList = new ArrayList<CartItem>();
+    public Iterator<CartItem> getAllCartItems() {
+        return itemList.iterator();
+    }
+    public BigDecimal getSubTotal() {
+        BigDecimal subTotal = new BigDecimal("0");
+        Iterator<CartItem> items = getAllCartItems();
+        while (items.hasNext()) {
+            CartItem cartItem = (CartItem) items.next();
+            Item item = cartItem.getItem();
+            BigDecimal listPrice = item.getUnitCost();
+            BigDecimal quantity = new BigDecimal(String.valueOf(cartItem.getQuantity()));
+            subTotal = subTotal.add(listPrice.multiply(quantity));
+        }
+        return subTotal;
+    }
 
 //    private final Map<String, CartItem> itemMap = Collections.synchronizedMap(new HashMap<String, CartItem>());
 //    private final List<CartItem> itemList = new ArrayList<CartItem>();

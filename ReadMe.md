@@ -26,7 +26,7 @@
 请求类型皆为 get
 
 |请求页面|链接字段|参数|需要数据|表单提交|
-|--- |---|---|---|
+|--- |---|---|---|---|
 |main|`/catalog/main`||||
 |category|`/catalog/viewCategory`|categoryId|category productList||
 |product|`/catalog/viewProduct`|productId|prodcut itemList||
