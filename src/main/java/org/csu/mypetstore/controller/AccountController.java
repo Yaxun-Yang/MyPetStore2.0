@@ -82,7 +82,7 @@ public class AccountController {
         System.out.println("成功发送短信给"+phoneNumber+"，验证码为"+code);
 
         //此处为真实的短信发送
-//        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4FgfSgYDH9yXHUy96voS", "PupkjLABMhSlzvwSWQT7SovsVfL7Ao");
+//        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "**********", "***********");
 //        IAcsClient client = new DefaultAcsClient(profile);
 //
 //        CommonRequest request = new CommonRequest();
