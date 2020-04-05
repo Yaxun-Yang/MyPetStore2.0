@@ -14,7 +14,7 @@
         <table>
             <tr>
                 <td>User ID:</td>
-                <td>${sessionScope.account.username} </td>
+                <td th:text="${account.username} ">${account.username} </td>
             </tr>
             <tr>
                 <td>New password:</td>
@@ -29,15 +29,11 @@
                 </td>
             </tr>
 
-            <c:if test="${sessionScope.message != null}">
-                <tr>
-                    <td colspan="2">
-
-                        <h4 color="red">${sessionScope.message}</h4>>
-
-                    </td>
-                </tr>
-            </c:if>
+            <tr th:if="${message != null}">
+                <td colspan="2" th:text="${message}">
+                    <h4 color="red">${message}</h4>>
+                </td>
+            </tr>
 
         </table>
 
@@ -47,71 +43,70 @@
             <tr>
                 <td>First name:</td>
                 <td>
-                    <input type="text" name="firstName" value="${sessionScope.account.firstName}">
+                    <input type="text" th:name="firstName" th:value="${account.firstName}">
 
                 </td>
             </tr>
             <tr>
                 <td>Last name:</td>
                 <td>
-                    <input type="text" name="lastName" value="${sessionScope.account.lastName}"/>
+                    <input type="text" th:name="lastName" th:value="${account.lastName}"/>
 
                 </td>
             </tr>
             <tr>
                 <td>Email:</td>
                 <td>
-                    <input type="text" name="email" value="${sessionScope.account.email}"/>
+                    <input type="text" th:name="email" th:value="${account.email}"/>
 
                 </td>
             </tr>
             <tr>
                 <td>Phone:</td>
                 <td>
-                    <input type="text" name="phone" value="${sessionScope.account.phone}"/>
+                    <input type="text" th:name="phone" th:value="${account.phone}"/>
 
                 </td>
             </tr>
             <tr>
                 <td>Address 1:</td>
                 <td>
-                    <input type="text" name="address1" value="${sessionScope.account.address1}"/>
+                    <input type="text" th:name="address1" th:value="${account.address1}"/>
 
                 </td>
             </tr>
             <tr>
                 <td>Address 2:</td>
                 <td>
-                    <input type="text" name="address2" value="${sessionScope.account.address2}"/>
+                    <input type="text" th:name="address2" th:value="${account.address2}"/>
 
                 </td>
             </tr>
             <tr>
                 <td>City:</td>
                 <td>
-                    <input type="text" name="city" value="${sessionScope.account.city}"/>
+                    <input type="text" th:name="city" th:value="${account.city}"/>
 
                 </td>
             </tr>
             <tr>
                 <td>State:</td>
                 <td>
-                    <input type="text" name="state" value="${sessionScope.account.state}"/>
+                    <input type="text" th:name="state" th:value="${account.state}"/>
 
                 </td>
             </tr>
             <tr>
                 <td>Zip:</td>
                 <td>
-                    <input type="text" name="zip" value="${sessionScope.account.zip}"/>
+                    <input type="text" th:name="zip" th:value="${account.zip}"/>
 
                 </td>
             </tr>
             <tr>
                 <td>Country:</td>
                 <td>
-                    <input type="text" name="country" value="${sessionScope.account.country}"/>
-
+                    <input type="text" th:name="country" th:value="${account.country}"/>
                 </td>
             </tr>
         </table>
@@ -141,16 +136,16 @@
 
             <tr>
                 <td>Enable MyList</td>
-                <td><input type="checkbox" name="listOption" checked /></td>
+                <td><input type="checkbox" th:name="listOption" checked /></td>
             </tr>
             <tr>
                 <td>Enable MyBanner</td>
-                <td><input type="checkbox" name="account.bannerOption" checked/></td>
+                <td><input type="checkbox" th:name="account.bannerOption" checked/></td>
             </tr>
 
         </table>
 
-        <input type="submit" name="editAccount" value="Save Account Information">
+        <input type="submit" th:name="editAccount" th:value="Save Account Information">
 
     </form>
 </div>
