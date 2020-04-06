@@ -9,7 +9,6 @@
 - 登录发送短信验证码（阿里云短信服务）
 
 
-## 全局信息说明
 - web服务器端口使用8081
 - 数据库端口使用3306
 - 数据库名为`mypetstore`
@@ -40,7 +39,9 @@
 |表单提交页面|链接字段|需要数据|
 |---|---|---|
 |cart|`/cart/viewCheckOut`|List\<CartItem\>:cartItemList BigDecimal:subTol|
-|signInForm|`/account/postSignInForm`||
+|signInForm|`/account/postSignInForm`|String:username String:password String:phoneNumber String:verifyCode|
+|newAccountForm|`/account/postNewAccountForm`|String:username String:password String:repeatedPassword|
+|editAccountForm|`/account/postEditAccountForm`|Account:account String:username String:password String:repeatedPassword String:firstName String:lastName String:email String:phone String:address1 String:address2 String:city String:state String:zip String:country|
 
 ## 功能请求
 |功能描述|请求类型|链接字段|参数|返回数据（JSON格式）|

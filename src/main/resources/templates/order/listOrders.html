@@ -17,19 +17,16 @@
             <th>Total Price</th>
         </tr>
 
-        <c:forEach var="order" items="${sessionScope.orderList}">
-            <tr>
-                <td>
-                    <a href="viewItem?orderId=${order.orderId}">${order.orderId}</a>
-                </td>
-                <td>
-                    <fmt:formatDate value="${order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" />
-                </td>
-                <td>
-                    <fmt:formatNumber value="${order.totalPrice}" pattern="$#,##0.00" />
-                </td>
-            </tr>
-        </c:forEach>
+        <tr th:each="order:${orderList}">
+            <td>
+                <a th:href="'/catalog/viewItem?orderId='+${order.orderId}">${order.orderId}</a>
+            </td>
+
+            <td th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd HH:mm:ss')}">
+
+            <td th:text="'$'+${#numbers.formatDecimal(order.totalPrice,1,2)}">
+
+        </tr>
     </table>
 </div>
 
