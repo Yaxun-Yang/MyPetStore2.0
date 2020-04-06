@@ -8,20 +8,24 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
+import org.apache.catalina.Session;
+
 import org.csu.mypetstore.domain.Account;
 import org.csu.mypetstore.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
-@SessionAttributes("account,msg,code")
 @Controller
 @RequestMapping("/account")
+@SessionAttributes(value = {"account"})
 public class AccountController {
 
     @Autowired
@@ -30,10 +34,10 @@ public class AccountController {
     @GetMapping("/viewSignIn")
     public  String viewSignIn(Model model)
     {
-        model.addAttribute("msg",null);
         return "account/signInForm";
     }
 
+    //判断账户合法性，合法则跳转到主页否则跳转回到登录页面
     @PostMapping("/postSignInForm")
     public String postSignInForm(String username,String password, String verifyCode,Model model,HttpServletRequest httpServletRequest)
     {
@@ -41,14 +45,17 @@ public class AccountController {
         Account account = accountService.getAccount(username,password);
         if(account != null)
         {
-            String code =(String) httpServletRequest.getSession().getAttribute("code");
-
+            HttpSession session=  httpServletRequest.getSession();
+            String code =(String) session.getAttribute("code");
+            session.setAttribute("code",null);
             if(verifyCode.equals(code))
             {
                 model.addAttribute("account",account);
-                return "/catalog/main";
+               // System.out.println(httpServletRequest.getSession().getAttribute("account"));
+                return "redirect:/catalog/viewMain";
             }
             else {
+
                 model.addAttribute("msg","Invalid verification code .Sign in failed.");
             }
         }
@@ -57,16 +64,16 @@ public class AccountController {
             model.addAttribute("msg","Invalid username or password.  Sign in failed.");
         }
 
-        return "account/signInForm";
+        return "/account/signInForm";
     }
 
+    //用户退出，清除用户缓存，返回登录页面
     @GetMapping("/signOut")
-    public String signOut(Model model)
+    public String signOut(Model model, SessionStatus sessionStatus)
     {
-        //退出登录
-            model.addAttribute("account",null);
-            model.addAttribute("msg",null);
-            return "/catalog/main";
+            sessionStatus.setComplete();
+
+            return "redirect:/catalog/viewMain";
 
     }
 

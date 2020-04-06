@@ -1,3 +1,5 @@
+
+
 Array.prototype.unique = function(){
     this.sort();
     var res = [];
@@ -9,7 +11,7 @@ Array.prototype.unique = function(){
         }
     }
     return res;
-}
+};
 
 // 对样式操作
 var setClass = {

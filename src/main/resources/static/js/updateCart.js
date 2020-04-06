@@ -1,6 +1,9 @@
 
+
+//全选checkbox的设定
 $(function()
 {
+
     //获取所有的除了全选的checkbox
     var cks= $(':checkbox:gt(0)');
 
@@ -11,11 +14,13 @@ $(function()
             //让所有非全选checkbox checked状态和全选checkbox一致
             cks.prop("checked", $(this).prop("checked"));
         }
-    )
+    );
+
     //每个非全选checkbox绑定事件
     cks.click(
         function()
         {
+
             if(!$(this).prop('checked'))
             {
                 //有不是选中的则修改全选的为非选中
@@ -69,22 +74,22 @@ $(function () {
         var quantity = this.value;
         var workingItemId = this.id;
 
-     //   alert(quantity+","+workingItemId+","+cartId);
+        //   alert(quantity+","+workingItemId+","+cartId);
         $.ajax({
             type: "POST",
-          //  url: "/cart/updateItemQuantity?itemId="+workingItemId+"&quantity="+quantity,
+            //  url: "/cart/updateItemQuantity?itemId="+workingItemId+"&quantity="+quantity,
             url: "/cart/updateItemQuantity",
             dataType:"json",
             data:{
-               "itemId": workingItemId,
+                "itemId": workingItemId,
                 "quantity":quantity,
                 "cartId":cartId
             },
             success: function (result) {
-               // alert(result.totalCost);
+                // alert(result.totalCost);
                 $("#subTotal").text(result.subTotal);
 
-              //  $(".total").text(result.totalCost);
+                //  $(".total").text(result.totalCost);
                 $("[name='"+workingItemId+"']").text(result.totalCost);
             }
         })

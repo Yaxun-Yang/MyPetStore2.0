@@ -1,5 +1,6 @@
 package org.csu.mypetstore.controller;
 
+import org.csu.mypetstore.domain.Account;
 import org.csu.mypetstore.domain.Category;
 import org.csu.mypetstore.domain.Item;
 import org.csu.mypetstore.domain.Product;
@@ -9,26 +10,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
 @RequestMapping("/catalog")
-@SessionAttributes("account")
 public class CatalogController {
     @Autowired
     private CatalogService catalogService;
 
-    @GetMapping("/main")
-    public String viewMain(Model model)
+    @GetMapping("/viewMain")
+    public String viewMain(Model model,HttpServletRequest httpServletRequest)
     {
-        model.addAttribute("account",null);
+        Account account =(Account) httpServletRequest.getSession().getAttribute("account");
+       if(model.getAttribute("msg") == null )
+       {
+           model.addAttribute("msg","Welcome to MyPetStore, look for whatever you want!");
+       }
+       if(account != null)
+       {
+           model.addAttribute("account",account);
+           model.addAttribute("msg","Hello, "+account.getUsername()+"!");
+       }
         return"/catalog/main";
     }
 
     @GetMapping("/viewCategory")
-    public String viewCategory(String categoryId, Model model)
+    public String viewCategory(String categoryId, Model model,HttpServletRequest httpServletRequest)
     {
-
+        Account account= (Account)httpServletRequest.getSession().getAttribute("account");
+        model.addAttribute("account",account);
         //原解决方案未考虑用不合法的参数请求访问，此时也应该返回原页，通过重定向实现
         Category category = catalogService.getCategory(categoryId);
         if (categoryId != null) {
@@ -41,8 +52,10 @@ public class CatalogController {
     }
 
     @GetMapping("/viewProduct")
-    public String viewProduct(String productId, Model model)
+    public String viewProduct(String productId, Model model,HttpServletRequest httpServletRequest)
     {
+        Account account= (Account)httpServletRequest.getSession().getAttribute("account");
+        model.addAttribute("account",account);
         Product product = catalogService.getProduct(productId);
         if(product != null)
         {
@@ -56,8 +69,10 @@ public class CatalogController {
     }
 
     @GetMapping("/viewItem")
-    public  String viewItem(String itemId, Model model)
+    public  String viewItem(String itemId, Model model,HttpServletRequest httpServletRequest)
     {
+        Account account= (Account)httpServletRequest.getSession().getAttribute("account");
+        model.addAttribute("account",account);
         Item item = catalogService.getItem(itemId);
         if(item != null)
         {
@@ -76,9 +91,10 @@ public class CatalogController {
     }
 
     @PostMapping("/viewSearchProducts")
-    public String viewSearchProducts(String keyword,Model model)
+    public String viewSearchProducts(String keyword,Model model,HttpServletRequest httpServletRequest)
     {
-
+        Account account= (Account)httpServletRequest.getSession().getAttribute("account");
+        model.addAttribute("account",account);
         List<Product> productList = catalogService.searchProductList(keyword);
         model.addAttribute("productList",productList);
         return "catalog/searchProducts";

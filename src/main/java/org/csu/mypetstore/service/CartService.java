@@ -131,6 +131,11 @@ public class CartService {
 
     }
 
+    //从购物车中删除商品
+    public void removeItem(String cartId,String itemId)
+    {
+        cartItemMapper.deleteCartItem(cartId,itemId);
+    }
     //获取某种商品总价钱
     public BigDecimal getCartItemTotalCost(String cartId,String cartItemId)
     {
