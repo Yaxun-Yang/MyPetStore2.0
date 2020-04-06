@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -27,33 +28,34 @@ public class CartController {
 
     @Autowired
     private CatalogService catalogService;
-    //验证是否登录，是则跳转Cart.html，否则跳转登录页面
+    //验证是否登录，是则跳转cart.html，否则跳转登录页面
     @GetMapping("/viewCart")
-    public  String viewCart(Model model)
+    public  String viewCart(Model model , HttpServletRequest httpServletRequest)
     {
-        Account account = (Account) model.getAttribute("account");
+        Account account=(Account) httpServletRequest.getSession().getAttribute("account");
         if(account != null)
         {
+            model.addAttribute("msg",null);
+            model.addAttribute("account",account);
             Cart cart = cartService.getCart(account.getUsername());
             model.addAttribute("cart",cart);
             List<CartItem> cartItemList = cartService.getCartItemList(cart.getCartId());
             model.addAttribute("cartItemList",cartItemList);
-            return "cart/cart";
+            model.addAttribute("cartItemNumber",cartItemList.size());
+            model.addAttribute("subTotal",cartService.getCartTotalCost(cart.getCartId()));
+            return "/cart/cart";
         }
-       return "redirect:/account/viewSignOn";
+       return "redirect:/account/viewSignIn";
     }
 
     //添加商品到购物车，已登录则跳出登录成功提醒，否则跳转登录页面
     @GetMapping("/addItem")
-    public  String  addItemCart(String itemId,Model model)
+    public  String  addItemCart(String itemId,Model model,HttpServletRequest httpServletRequest)
     {
-        Account account = (Account) model.getAttribute("account");
-
-        //测试用
-        account = accountService.getAccount("a");
-
+        Account account=(Account) httpServletRequest.getSession().getAttribute("account");
         if(account != null)
         {
+            model.addAttribute("account",account);
             //弹出小弹窗内的信息
             String msg = " ";
             msg+=itemId;
@@ -70,9 +72,18 @@ public class CartController {
             model.addAttribute("cartItemList",cartItemList);
             model.addAttribute("subTotal",cartService.getCartTotalCost(cart.getCartId()));
            // return "redirect:/catalog/viewItem?itemId="+itemId;
-            return "cart/cart";
+            return "/cart/cart";
         }
-        return "redirect:/account/viewSignOn";
+        return "redirect:/account/viewSignIn";
+    }
+
+    @GetMapping("/removeItem")
+    public String  removeItem(String itemId,HttpServletRequest httpServletRequest)
+    {
+       Account account =(Account) httpServletRequest.getSession().getAttribute("account");
+        cartService.removeItem(cartService.getCart(account.getUsername()).getCartId(),itemId);
+
+        return "redirect:/cart/viewCart";
     }
 
     //修改商品数量
@@ -95,9 +106,10 @@ public class CartController {
     }
 
     @PostMapping("/viewCheckOut")
-    public String viewCheckOut(Model model)
+    public String viewCheckOut(Model model,HttpServletRequest httpServletRequest)
     {
-
+        Account account= (Account)httpServletRequest.getSession().getAttribute("account");
+        model.addAttribute("account",account);
         return "/cart/checkOut";
     }
 

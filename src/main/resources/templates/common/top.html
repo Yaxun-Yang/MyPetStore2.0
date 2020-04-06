@@ -21,7 +21,7 @@
 
             <div id="Logo">
                 <div id="LogoContent">
-                    <a href="/catalog/main">
+                    <a href="/catalog/viewMain">
                         <img src="../images/logo-topbar.gif"/>
                     </a>
                 </div>
@@ -30,16 +30,15 @@
             <div id="Menu">
                 <div id="MenuContent">
                     <span th:if="${account} != null">
-                        <a href="viewCart">
+                        <a href="/cart/viewCart">
                             <img align="middle" name="img_cart" src="../images/cart.gif"/>
                         </a>
                         <img align="middle" src="../images/separator.gif"/>
-                        <a href="signOut">Sign Out</a>
+                        <a href="/account/signOut">Sign Out</a>
                         <img align="middle" src="../images/separator.gif"/>
-                        <a href="viewMyAccount">My Account</a>
+                        <a href="/account/viewEditAccountForm">My Account</a>
                     </span>
                     <span th:if="${account} == null">
-                        <img align="middle" src="../images/separator.gif"/>
                         <a href="/account/viewSignIn">Sign In</a>
                     </span>
 
