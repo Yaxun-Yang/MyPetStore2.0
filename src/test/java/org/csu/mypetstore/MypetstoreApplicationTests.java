@@ -85,7 +85,7 @@ class MypetstoreApplicationTests {
     {
         String code =String.valueOf((int)(Math.random()*1000));
 
-       DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI4FgfSgYDH9yXHUy96voS", "PupkjLABMhSlzvwSWQT7SovsVfL7Ao");
+       DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "********", "***********");
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();

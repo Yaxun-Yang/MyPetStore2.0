@@ -8,7 +8,33 @@
 <body>
 <header th:replace="common/top"></header>
 <div id="Content">
-
+    <table>
+        <tr>
+            <td>User ID:</td>
+            <td>
+                <input type="text" name="username" id="username"  onblur="usernameIsExist();"/>
+                <div id="usernameMsg"></div>
+                <script type="text/javascript" src="${pageContext.request.contextPath}/js/register.js"></script>
+            </td>
+        </tr>
+        <tr>
+            <td> password:</td>
+            <td>
+                <input type="text" name="password">
+            </td>
+        </tr>
+        <tr>
+            <td>Repeat password:</td>
+            <td>
+                <input type="text" name="repeatedPassword">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" th:text="${message != null}">
+                    <h4 color="red">${message}</h4>>
+            </td>
+        </tr>
+    </table>
 </div>
 <footer th:replace="common/bottom"></footer>
 </body>
