@@ -1,11 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>My JPetStore</title>
-  <link rel="StyleSheet" href="css/jpetstore.css" type="text/css" media="screen"/> 
+    <meta charset="UTF-8">
+    <title>MyPetStore</title>
+    <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen"/>
 </head>
 
 <body>
@@ -26,7 +24,7 @@
 
 <ul>
   <li><a href="/account/viewSignUp">Signing Up</a></li>
-  <li><a href="/account/viewSignUp">Signing In</a></li>
+  <li><a href="/account/viewSignIn">Signing In</a></li>
   <li><a href="/catalog/viewProduct">Working with the Product Catalog</a></li>
   <li><a href="#CatalogBrowsing">Browsing the Catalog</a></li>
   <li><a href="#CatalogSearching">Searching the Catalog</a></li>
@@ -35,10 +33,10 @@
   <li><a href="#ShoppingCartUpdate">Updating the Quantity of an Item</a></li>
   <li><a href="#Ordering">Ordering Items</a></li>
   <li><a href="#OrderReview">Reviewing an Order</a></li>
-  <li><a href="#Issues">Known Issues</a></li>
+<!--  <li><a href="#">Known Issues</a></li>-->
 </ul>
 
-<h2><a id="SigningUp" name="SigningUp"></a>Signing Up</h2>
+<h2><a id="SigningUp" name="SigningUp"></a>Signing Up</h2> 
 
 <p>
   To sign up, click the Sign-in link at the right end of the banner. Next,
