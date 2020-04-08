@@ -6,11 +6,11 @@
     <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen" />
 </head>
 <body>
-<header th:replace="common/top"></header>
+<header th:replace="/common/top"></header>
 <div id="Content">
 
     <div id="BackLink">
-        <a href="/catalog/main">
+        <a href="/catalog/viewMain">
             Return to Main Menu
         </a>
     </div>
@@ -18,7 +18,7 @@
     <div id="Catalog">
         <table>
             <tr>
-                <th align="center" colspan="2" th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd HH:mm:ss')}">
+                <th  colspan="2" th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd HH:mm:ss')}">
                     Order #${sessionScope.order.orderId}
                     <!--                    ${#dates.format(coupon.receiveDayTime,'yyyy-mm-dd HH：mm：ss'}-->
                     <!--                    <fmt:formatDate value="${sessionScope.order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" />-->
@@ -114,7 +114,10 @@
                 <td th:text="${order.courier}" ></td>
             </tr>
             <tr>
-                Status: <td colspan="2" th:text="${order.status}" ></td>
+                <td>Status:</td>> <td th:text="${order.status}" ></td>
+            </tr>
+            <tr>
+                <th colspan="2" >LineItem List</th>
             </tr>
             <tr>
                 <td colspan="2">
@@ -128,19 +131,16 @@
                         </tr>
                             <tr th:each="lineItem:${order.lineItems}">
                                 <td>
-                                    <a href="viewItem?itemId=${lineItem.item.itemId}">
+                                    <a th:href="'/catalog/viewItem?itemId='+${lineItem.itemId}" th:text="${lineItem.itemId}">
                                         ${lineItem.item.itemId}
                                     </a></td>
-                                <td th:if="${lineItem.item != null">
-                                        ${lineItem.item.attribute1}
-                                        ${lineItem.item.attribute2}
-                                        ${lineItem.item.attribute3}
-                                        ${lineItem.item.attribute4}
-                                        ${lineItem.item.attribute5}
-                                        ${lineItem.item.product.name}
-                                    <span th:if="${lineItem.item == null}" >
-                                        <i>no order</i>
-                                    </span>
+                                <td th:if="${lineItem.item} != null">
+                                      <span th:text="${lineItem.item.attribute1}" ></span>
+                                    <span th:text="${lineItem.item.attribute2}" ></span>
+                                    <span th:text="${lineItem.item.attribute3}" ></span>
+                                    <span th:text="${lineItem.item.attribute4}" ></span>
+                                    <span th:text="${lineItem.item.attribute5}" ></span>
+
                                 </td>
 
                                 <td th:text="${lineItem.quantity}">${lineItem.quantity}</td>
@@ -151,8 +151,7 @@
                             </tr>
 
                         <tr>
-                            Total:
-                            <th colspan="5" th:text="'$'+${#numbers.formatDecimal(order.totalPrice,1,2)}">
+                            <th colspan="5" th:text="' Total:$'+${#numbers.formatDecimal(order.totalPrice,1,2)}">
                             </th>
                         </tr>
                     </table>
@@ -161,7 +160,7 @@
 
         </table>
 </div>
-
-<footer th:replace="common/bottom"></footer>
+</div>
+<footer th:replace="/common/bottom"></footer>
 </body>
 </html>

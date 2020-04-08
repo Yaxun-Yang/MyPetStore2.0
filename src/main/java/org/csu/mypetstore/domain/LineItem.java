@@ -6,7 +6,6 @@ import java.math.BigDecimal;
 public class LineItem{
 
     private int orderId;
-    private int lineNumber;
     private int quantity;
     private String itemId;
     private BigDecimal unitPrice;
@@ -16,12 +15,12 @@ public class LineItem{
     public LineItem() {
     }
 
-    public LineItem(int lineNumber, CartItem cartItem) {
-        this.lineNumber = lineNumber;
+    public LineItem( CartItem cartItem) {
         this.quantity = cartItem.getQuantity();
-        this.itemId = cartItem.getItem().getItemId();
+        this.itemId = cartItem.getItemId();
         this.unitPrice = cartItem.getItem().getUnitCost();
         this.item = cartItem.getItem();
+        calculateTotal();
     }
 
     public int getOrderId() {
@@ -32,13 +31,7 @@ public class LineItem{
         this.orderId = orderId;
     }
 
-    public int getLineNumber() {
-        return lineNumber;
-    }
 
-    public void setLineNumber(int lineNumber) {
-        this.lineNumber = lineNumber;
-    }
 
     public String getItemId() {
         return itemId;

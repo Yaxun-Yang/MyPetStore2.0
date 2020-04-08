@@ -21,5 +21,4 @@ public interface ItemMapper {
 
     Item getItem(String itemId);
 
-    void updateInventoryQuantity(Map<String, Object> param);
 }

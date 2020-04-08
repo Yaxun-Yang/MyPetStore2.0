@@ -32,8 +32,9 @@ public class AccountController {
     private AccountService accountService;
 
     @GetMapping("/viewSignIn")
-    public  String viewSignIn(Model model)
+    public  String viewSignIn(Model model,String msg)
     {
+        model.addAttribute("msg",msg);
         return "account/signInForm";
     }
 
@@ -56,12 +57,12 @@ public class AccountController {
             }
             else {
 
-                model.addAttribute("msg","Invalid verification code .Sign in failed.");
+                model.addAttribute("msg3","Invalid verification code .Sign in failed.");
             }
         }
         else
         {
-            model.addAttribute("msg","Invalid username or password.  Sign in failed.");
+            model.addAttribute("msg3","Invalid username or password.  Sign in failed.");
         }
 
         return "/account/signInForm";

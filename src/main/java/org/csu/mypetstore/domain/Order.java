@@ -38,6 +38,10 @@ public class Order {
     private String status;
     private List<LineItem> lineItems = new ArrayList<LineItem>();
 
+    public Order()
+    {
+
+    }
     public int getOrderId() {
         return orderId;
     }
@@ -254,48 +258,31 @@ public class Order {
         return lineItems;
     }
 
-    public void initOrder(Account account, Cart cart) {
+    public void initOrder(String username , List<CartItem> cartItemList) {
 
-        username = account.getUsername();
+        this.username =username;
         orderDate = new Date();
-
-        shipToFirstName = account.getFirstName();
-        shipToLastName = account.getLastName();
-        shipAddress1 = account.getAddress1();
-        shipAddress2 = account.getAddress2();
-        shipCity = account.getCity();
-        shipState = account.getState();
-        shipZip = account.getZip();
-        shipCountry = account.getCountry();
-
-        billToFirstName = account.getFirstName();
-        billToLastName = account.getLastName();
-        billAddress1 = account.getAddress1();
-        billAddress2 = account.getAddress2();
-        billCity = account.getCity();
-        billState = account.getState();
-        billZip = account.getZip();
-        billCountry = account.getCountry();
-
-        totalPrice = cart.getSubTotal();
-
-        creditCard = "999 9999 9999 9999";
-        expiryDate = "12/03";
-        cardType = "Visa";
         courier = "UPS";
         locale = "CA";
-        status = "P";
+        status = "UNPAID";
 
-        Iterator<CartItem> i = cart.getAllCartItems();
-        while (i.hasNext()) {
-            CartItem cartItem = (CartItem) i.next();
-            addLineItem(cartItem);
+        for (int i=0;i<cartItemList.size();i++)
+        {
+            addLineItem(cartItemList.get(i));
         }
-
+        totalPrice = new BigDecimal(0);
+       calculateAll();
     }
 
+    private void calculateAll()
+    {
+        for (int i=0 ;i<lineItems.size();i++)
+        {
+            totalPrice=totalPrice.add(lineItems.get(i).getTotal());
+        }
+    }
     public void addLineItem(CartItem cartItem) {
-        LineItem lineItem = new LineItem(lineItems.size() + 1, cartItem);
+        LineItem lineItem = new LineItem( cartItem);
         addLineItem(lineItem);
     }
 

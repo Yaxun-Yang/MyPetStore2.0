@@ -5,10 +5,10 @@
     <script type="text/javascript" src="/js/jquery-3.3.1.js"></script>
     <script th:inline="javascript">
         //弹出添加成功窗口
-        var msg =[[${msg}]];
+     //   var msg =[[${msg}]];
         var cartId = [[${cart.cartId}]];
-        if(msg != null)
-            alert(msg);
+       // if(msg != null)
+         //   alert(msg);
       //  alert(msg);
     </script>
     <script src="/js/updateCart.js" th:inline="javascript">    </script>
@@ -24,7 +24,7 @@
 
     <div id="Catalog">
 
-        <form action="/cart/viewCheckOut" method="post" >
+        <form action="/cart/postToCheckOut" method="post" >
             <h2 th:text="${account.username}+'`s Shopping Cart'"></h2>
 
             <table th:with="judgeTemp=${cart.cartId}">
@@ -98,7 +98,7 @@
                         $<span class="total" th:name="${cartItem.itemId}" th:text="${cartItem.quantity*cartItem.item.unitCost}">${cartItem.totalCost}</span>
                     </td>
                     <td>
-                        <a class="Button" th:href="'/catalog/removeItemCart?workingItemId='+${cartItem.item.itemId}">Remove</a>
+                        <a class="Button" th:href="'/cart/removeItem?itemId='+${cartItem.item.itemId}">Remove</a>
                     </td>
                 </tr>
                 </div>

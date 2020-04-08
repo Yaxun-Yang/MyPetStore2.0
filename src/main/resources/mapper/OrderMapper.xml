@@ -69,19 +69,27 @@
     ORDER BY ORDERDATE
   </select>
 
-    <insert id="insertOrder" parameterType="Order">
-    INSERT INTO ORDERS (ORDERID, USERID, ORDERDATE, SHIPADDR1, SHIPADDR2, SHIPCITY, SHIPSTATE,
+  <insert id="insertOrder" parameterType="order">
+    INSERT INTO ORDERS (USERID, ORDERDATE, SHIPADDR1, SHIPADDR2, SHIPCITY, SHIPSTATE,
       SHIPZIP, SHIPCOUNTRY, BILLADDR1, BILLADDR2, BILLCITY, BILLSTATE, BILLZIP, BILLCOUNTRY,
       COURIER, TOTALPRICE, BILLTOFIRSTNAME, BILLTOLASTNAME, SHIPTOFIRSTNAME, SHIPTOLASTNAME,
       CREDITCARD, EXPRDATE, CARDTYPE, LOCALE)
-    VALUES(#{orderId}, #{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2,jdbcType=VARCHAR}, #{shipCity},
+    VALUES(#{username}, #{orderDate}, #{shipAddress1}, #{shipAddress2,jdbcType=VARCHAR}, #{shipCity},
       #{shipState}, #{shipZip}, #{shipCountry}, #{billAddress1}, #{billAddress2,jdbcType=VARCHAR}, #{billCity},
       #{billState}, #{billZip}, #{billCountry}, #{courier}, #{totalPrice}, #{billToFirstName}, #{billToLastName},
       #{shipToFirstName}, #{shipToLastName}, #{creditCard}, #{expiryDate}, #{cardType}, #{locale})
   </insert>
 
     <insert id="insertOrderStatus" parameterType="Order">
-    INSERT INTO ORDERSTATUS (ORDERID, LINENUM, TIMESTAMP, STATUS)
-    VALUES (#{orderId,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+    INSERT INTO ORDERSTATUS (ORDERID,  TIMESTAMP, STATUS)
+    VALUES (#{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
+
+  <select id="getOrderId" resultType="int" parameterType="Order">
+    SELECT
+        ORDERID
+    FROM ORDERS
+    ORDER BY ORDERID
+    DESC LIMIT 1
+  </select>
 </mapper>

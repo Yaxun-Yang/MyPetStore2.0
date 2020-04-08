@@ -6,10 +6,10 @@
     <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen" />
 </head>
 <body>
-<header th:replace="common/top"></header>
+<header th:replace="/common/top"></header>
 <div id="Content">
     <div id="Catalog">
-        <form action="shippingForm" method="post">
+        <form action="/order/postToConfirmOrder" method="post">
 
             <table>
                 <tr>
@@ -27,13 +27,13 @@
                 <tr>
                     <td>Card Number:</td>
                     <td>
-                        <input type="text" name="creditCard" value="12345">* Use a fake number!
+                        <input type="text" name="creditCard" value="12345">
                     </td>
                 </tr>
                 <tr>
                     <td>Expiry Date (MM/YYYY):</td>
                     <td>
-                        <input class="text" name="expiryDate" value=" 12/2019" />
+                        <input class="text" name="expiryDate" value=" 12/2020" />
                     </td>
                 </tr>
                 <tr>
@@ -43,49 +43,49 @@
                 <tr>
                     <td>First name:</td>
                     <td>
-                        <input class="text" name="billToFirstName"  value="${account.firstName}"/>
+                        <input class="text" name="billToFirstName"  th:value="${account.firstName}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Last name:</td>
                     <td>
-                        <input class="text" name="billToLastName" value="${account.lastName}"/>
+                        <input class="text" name="billToLastName" th:value="${account.lastName}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Address 1:</td>
                     <td>
-                        <input class="text" name="billAddress1" value="${account.address1}" />
+                        <input class="text" name="billAddress1" th:value="${account.address1}" />
                     </td>
                 </tr>
                 <tr>
                     <td>Address 2:</td>
                     <td>
-                        <input type="text" name="billAddress2" value="${account.address2}"/>
+                        <input type="text" name="billAddress2" th:value="${account.address2}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>City:</td>
                     <td>
-                        <input type="text" name="billCity" value="${account.city}"/>
+                        <input type="text" name="billCity" th:value="${account.city}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>State:</td>
                     <td>
-                        <input type="text" name="billState" value="${account.state}"/>
+                        <input type="text" name="billState" th:value="${account.state}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Zip:</td>
                     <td>
-                        <input type="text" name="billZip" value="${account.zip}"/>
+                        <input type="text" name="billZip" th:value="${account.zip}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Country:</td>
                     <td>
-                        <input type="text" name="billCountry" value="English" />
+                        <input type="text" name="billCountry" th:value="${account.country}" />
                     </td>
                 </tr>
 
@@ -100,7 +100,7 @@
 
 
 
-            <table align="center" style="display:none" id="tb">
+            <table  style="display: none;align-self: center" id="tb">
                 <tr>
                     <th colspan=2>Shipping Address</th>
                 </tr>
@@ -108,49 +108,49 @@
                 <tr>
                     <td>First name:</td>
                     <td>
-                        <input type="text" name="shipToFirstName" />
+                        <input type="text" name="shipToFirstName" th:value="${account.firstName}"/>
                     </td>
                 </tr>
                 <tr>
-                    <td>Last name:</td>
+                    <td>Last name :</td>
                     <td>
-                        <input type="text" name="shipToLastName" />
+                        <input type="text" name="shipToLastName" th:value="${account.lastName}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Address 1:</td>
                     <td>
-                        <input type="text" name="shipAddress1" />
+                        <input type="text" name="shipAddress1" th:value="${account.address1}" />
                     </td>
                 </tr>
                 <tr>
                     <td>Address 2:</td>
                     <td>
-                        <input type="text" name="shipAddress2" />
+                        <input type="text" name="shipAddress2" th:value="${account.address2}" />
                     </td>
                 </tr>
                 <tr>
                     <td>City:</td>
                     <td>
-                        <input type="text" name="shipCity" />
+                        <input type="text" name="shipCity" th:value="${account.city}" />
                     </td>
                 </tr>
                 <tr>
                     <td>State:</td>
                     <td>
-                        <input type="text" name="shipState" />
+                        <input type="text" name="shipState" th:value="${account.state}"/>
                     </td>
                 </tr>
                 <tr>
                     <td>Zip:</td>
                     <td>
-                        <input type="text" name="shipZip">
+                        <input type="text" name="shipZip" th:value="${account.zip}">
                     </td>
                 </tr>
                 <tr>
                     <td>Country:</td>
                     <td>
-                        <input type="text" name="shipCountry">
+                        <input type="text" name="shipCountry"th:value="${account.country}" >
                     </td>
                 </tr>
 
@@ -174,7 +174,8 @@
 
 
     </div>
+    </div>
 
-<footer th:replace="common/bottom"></footer>
+<footer th:replace="/common/bottom"></footer>
 </body>
 </html>

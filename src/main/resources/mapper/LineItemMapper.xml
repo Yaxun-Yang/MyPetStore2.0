@@ -5,18 +5,28 @@
 
     <select id="getLineItemsByOrderId" parameterType="int" resultType="LineItem">
     SELECT
-      ORDERID,
-      LINENUM AS lineNumber,
-      ITEMID,
-      QUANTITY,
-      UNITPRICE
-    FROM LINEITEM
+      LI.ORDERID,
+      LI.ITEMID,
+      LI.QUANTITY,
+      LI.UNITPRICE,
+      I.ITEMID AS "item.itemId",
+      I.UNITCOST AS "item.unitCost",
+      I.SUPPLIER AS "item.supplierId",
+      I.PRODUCTID AS "item.productId",
+      I.STATUS AS "item.status",
+      I.ATTR1 AS "item.attribute1",
+      I.ATTR2 AS "item.attribute2",
+      I.ATTR3 AS "item.attribute3",
+      I.ATTR4 AS"item. attribute4",
+      I.ATTR5 AS "item.attribute5"
+    FROM LINEITEM LI, ITEM I
     WHERE ORDERID = #{orderId}
+    AND LI.ITEMID  = I.ITEMID
   </select>
 
     <insert id="insertLineItem" parameterType="LineItem">
-    INSERT INTO LINEITEM (ORDERID, LINENUM, ITEMID, QUANTITY, UNITPRICE)
-    VALUES (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
+    INSERT INTO LINEITEM (ORDERID, ITEMID, QUANTITY, UNITPRICE)
+    VALUES (#{orderId}, #{itemId}, #{quantity}, #{unitPrice})
   </insert>
 
 </mapper>

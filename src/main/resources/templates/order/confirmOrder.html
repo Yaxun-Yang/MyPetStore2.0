@@ -6,17 +6,19 @@
     <link rel="StyleSheet" href="../css/jpetstore.css" type="text/css" media="screen" />
 </head>
 <body>
-<header th:replace="common/top"></header>
+<header th:replace="/common/top"></header>
 <div id="Content">
     Please confirm the information below and then press continue...
 
     <table>
         <tr>
-            <th align="center" colspan="2">
-                <h4 size="4"><b>Order</b></h4>
-                <br />
-                <h4 size="3" th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd HH:mm:ss')}"></h4>
+            <th colspan="2">
+                Order
             </th>
+        </tr>
+
+        <tr>
+            <th colspan="2" th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd HH:mm:ss')}"></th>
         </tr>
 
         <tr>
@@ -89,7 +91,54 @@
             <td>Country:</td>
             <td th:text="${order.shipCountry}" ></td>
         </tr>
+        <tr>
+            <td>Courier:</td>
+            <td th:text="${order.courier}" ></td>
+        </tr>
+        <tr>
+            <td>Status:</td>> <td th:text="${order.status}" ></td>
+        </tr>
+        <tr>
+            <th colspan="2" >LineItem List</th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Description</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total Cost</th>
+                    </tr>
+                    <tr th:each="lineItem:${order.lineItems}">
+                        <td>
+                            <a th:href="'/catalog/viewItem?itemId='+${lineItem.itemId}" th:text="${lineItem.itemId}">
+                                ${lineItem.item.itemId}
+                            </a></td>
+                        <td th:if="${lineItem.item} != null">
+                            <span th:text="${lineItem.item.attribute1}" ></span>
+                            <span th:text="${lineItem.item.attribute2}" ></span>
+                            <span th:text="${lineItem.item.attribute3}" ></span>
+                            <span th:text="${lineItem.item.attribute4}" ></span>
+                            <span th:text="${lineItem.item.attribute5}" ></span>
 
+                        </td>
+
+                        <td th:text="${lineItem.quantity}">${lineItem.quantity}</td>
+
+                        <td th:text="'$'+${#numbers.formatDecimal(lineItem.unitPrice,1,2)}">
+
+                        <td th:text="'$'+${#numbers.formatDecimal(lineItem.total,1,2)}">
+                    </tr>
+
+                    <tr>
+                        <th colspan="5" th:text="' Total:$'+${#numbers.formatDecimal(order.totalPrice,1,2)}">
+                        </th>
+                    </tr>
+                </table>
+            </td>
+        </tr>
     </table>
 
 
@@ -98,9 +147,9 @@
             document.getElementById('pay').style.display = "block";
         }
     </SCRIPT>
-    <img src='../images/pay.jpg' id="pay" style='display:none;position:absolute; top:250px;left:700px;' width="240px" hight="350px">
+    <img src='/images/pay.jpg' id="pay" style='display:none;position:absolute; top:250px;left:700px;' width="240px" hight="350px">
 
-    <a th:href="/order/viewOrder" class="Button" onclick="reP()">Confirm</a>
+    <a href="/order/viewOrder" class="Button" onclick="reP()">Confirm</a>
 
 
 </div>

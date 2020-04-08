@@ -9,14 +9,19 @@ import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import org.csu.mypetstore.domain.*;
+import org.csu.mypetstore.persistence.OrderMapper;
 import org.csu.mypetstore.service.AccountService;
 import org.csu.mypetstore.service.CartService;
 import org.csu.mypetstore.service.CatalogService;
+import org.csu.mypetstore.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.event.annotation.AfterTestClass;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @MapperScan("org.csu.mypetstore.persistence")
@@ -28,6 +33,10 @@ class MypetstoreApplicationTests {
     AccountService accountService;
     @Autowired
     CartService cartService;
+    @Autowired
+    OrderService orderService;
+    @Autowired
+    OrderMapper orderMapper;
 
     @Test
     void contextLoads() {
@@ -108,4 +117,40 @@ class MypetstoreApplicationTests {
 //        }
 
     }
+    @Test
+    void testOrder()
+    {
+
+        Order order = new Order();
+        order.setUsername("a");
+        order.setOrderDate(new Date());
+        order.setShipAddress1("a");
+        order.setShipAddress2("a");
+        order.setShipCity("a");
+        order.setShipState("a");
+        order.setShipZip("a");
+        order.setShipCountry("a");
+        order.setBillAddress1("a");
+        order.setBillAddress2("a");
+        order.setBillCity("a");
+        order.setBillState("a");
+        order.setBillZip("a");
+        order.setBillCountry("a");
+        order.setCourier("a");
+        order.setTotalPrice(new BigDecimal(5));
+        order.setBillToFirstName("a");
+        order.setBillToLastName("a");
+        order.setShipToFirstName("a");
+        order.setShipToLastName("a");
+        order.setCardType("a");
+        order.setCreditCard("a");
+        order.setExpiryDate("a");
+        order.setLocale("a");
+        order.setStatus("a");
+      //  orderMapper.insertOrder(order);
+        orderService.insertOrder(order);
+        orderService.getOrderId(order);
+    }
+
+
 }

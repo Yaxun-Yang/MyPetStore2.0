@@ -32,12 +32,12 @@
             <input type="text" name="verifyCode" />
             <br>
             <br>
-                <h4 th:if="${msg} != null" style="color:red" th:text="${msg}">${msg}</h4>
+                <h4 th:if="${msg3} != null" style="color:red" th:text="${msg3}">${msg}</h4>
         </p>
-        <input type="submit" name="signIn" vale="Login">
+        <input type="submit" name="signIn" value="Login">
     </form>
     Need a user name and password?
-    <a th:href="/account/viewNewAccountForm">Register Now!</a>
+    <a href="/account/viewNewAccountForm">Register Now!</a>
     </div>
 </div>
 

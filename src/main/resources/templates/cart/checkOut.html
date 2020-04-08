@@ -9,65 +9,72 @@
 <div th:replace="common/top">
 </div>
 <div id="Content">
-</div>
+
 <div id="BackLink">
     <a href="/cart/viewCart">Return to Shopping Cart</a>
 </div>
 
 <div id="Catalog">
 
-    <table>
-        <tr>
-            <td>
-                <h2>Checkout Summary</h2>
 
+            <form action="/order/viewNewOrderForm" method="get" style="align-self: center;align-content: center;align-items: center" >
                 <table>
+                    <tr>
+                        <th colspan="7">Checkout Summary</th>
+                    </tr>
 
                     <tr>
-                        <td><b>Item ID</b></td>
-                        <td><b>Product ID</b></td>
-                        <td><b>Description</b></td>
-                        <td><b>In Stock?</b></td>
-                        <td><b>Quantity</b></td>
-                        <td><b>List Price</b></td>
-                        <td><b>Total Cost</b></td>
+                        <th>Item ID</th>
+                        <th>Product ID</th>
+                        <th>Description</th>
+                        <th>In Stock?</th>
+                        <th>Quantity</th>
+                        <th>List Price</th>
+                        <th>Total Cost</th>
                     </tr>
-                    <tr th:each="cartItem:${cartShow.cartItemShowList}">
+                    <tr th:each="cartItem:${cartItemList}">
                         <td>
-                            <a th:href="'/catalog/viewItem?itemId='+${cartItem.item.itemId}">
+                            <a th:href="'/catalog/viewItem?itemId='+${cartItem.itemId}" th:text="${cartItem.itemId}">
                                 ${cartItem.item.itemId}
                             </a>
                         </td>
-                        <td th:text="${cartItem.item.product.productId}">
+                        <td th:text="${cartItem.item.productId}">
                             ${cartItem.item.product.productId}
                         </td>
-                        <td th:text="${cartItem.item.attribute1}+${cartItem.item.product.name}">
+                        <td th:text="${cartItem.item.attribute1}">
                             ${cartItem.item.attribute1} ${cartItem.item.product.name}
                         </td>
-                        <td th:text="${cartItem.inStock}">
+                        <td th:text="${#strings.equals(cartItem.item.status,'P')}?'TRUE':'FALSE'">
                             ${cartItem.inStock}
                         </td>
                         <td th:text="${cartItem.quantity}">
                             ${cartItem.quantity}
                         </td>
-                        <td th:text="${cartItem.item.product.productId}">
-                            <fmt:formatNumber value="${cartItem.item.listPrice}" pattern="$#,##0.00" />
+                        <td th:text="'$'+${cartItem.item.unitCost}">
+
                         </td>
-                        <td>
-                            <fmt:formatNumber value="${cartItem.totalCost}" pattern="$#,##0.00" />
+                        <td th:text="'$'+${cartItem.quantity*cartItem.item.unitCost}">
+
                         </td>
                     </tr>
 
-                    <tr>
-                        <td colspan="7">Sub Total:
-                            <fmt:formatNumber value="${sessionScope.cartShow.subTotal}" pattern="$#,##0.00" />
+                    <tr >
+
+                         <td   colspan="7" th:text="'SubTotal: $'+${subTotal}">
                         </td>
                     </tr>
+
+                <tr>
+                    <td colspan="7">
+                         <input type="submit" value="confirm"/>
+                    </td>
+                </tr>
                 </table>
+            </form>
 
-        </tr>
-    </table>
-
+    </div>
+</div>
 <footer th:replace="common/bottom"></footer>
+
 </body>
 </html>

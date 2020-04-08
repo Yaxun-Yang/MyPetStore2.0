@@ -136,23 +136,23 @@ public class CartService {
     {
         cartItemMapper.deleteCartItem(cartId,itemId);
     }
+
     //获取某种商品总价钱
-    public BigDecimal getCartItemTotalCost(String cartId,String cartItemId)
+    public BigDecimal getCartItemTotalCost(String cartId,String itemId)
     {
-       int quantity= cartItemMapper.getCartItem(cartId,cartItemId).getQuantity();
+       int quantity= cartItemMapper.getCartItem(cartId,itemId).getQuantity();
      //  System.out.println(itemMapper.getItem(cartItemId).getUnitCost().multiply(new BigDecimal(String.valueOf(quantity))));
-       return itemMapper.getItem(cartItemId).getUnitCost().multiply(new BigDecimal(String.valueOf(quantity)));
+       return itemMapper.getItem(itemId).getUnitCost().multiply(new BigDecimal(String.valueOf(quantity)));
     }
 
     //获取购物车商品总价
-    public BigDecimal getCartTotalCost(String cartId)
+    public BigDecimal getCartTotalCost(List<CartItem> cartItemList)
     {
         BigDecimal subTotal = new BigDecimal(0);
-        List<CartItem> cartItemList = cartItemMapper.getCartItemList(cartId);
         for (int i = 0;i<cartItemList.size();i++)
         {
           //  System.out.println(getCartItemTotalCost(cartId,cartItemList.get(i).getItemId()));
-            subTotal=subTotal.add(getCartItemTotalCost(cartId,cartItemList.get(i).getItemId()));
+            subTotal=subTotal.add(getCartItemTotalCost(cartItemList.get(i).getCartId(),cartItemList.get(i).getItemId()));
         }
        // System.out.println("subTotal:"+subTotal);
         return subTotal;

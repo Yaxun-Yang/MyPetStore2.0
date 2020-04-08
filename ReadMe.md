@@ -1,5 +1,5 @@
 这本来是个单纯的API文档，后来懒得写ReadMe，所以把这个改成ReadMe
-那啥……既然都已经是ReadMe了，不如再放个项目笔记[blog]()
+那啥……既然都已经是ReadMe了，不如再放个项目笔记[blog](https://yaxun-yang.github.io/springmvc%E5%AD%A6%E4%B9%A0%E7%9B%AE%E5%BD%95/)
 
 # MyPetStore API 说明文档
 这是一个什么格式都没有的后端乱写的API接口，相信我机智的前端一定能看懂,顺便mark一下任劳任怨而的后端都干了些什么好事（maybe？）
@@ -12,7 +12,7 @@
 - 登录发送短信验证码（阿里云短信服务）
 - 引入AOP
 
-
+## 全局设置
 - web服务器端口使用8081
 - 数据库端口使用3306
 - 数据库名为`mypetstore`

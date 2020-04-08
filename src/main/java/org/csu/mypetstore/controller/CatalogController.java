@@ -20,18 +20,20 @@ public class CatalogController {
     private CatalogService catalogService;
 
     @GetMapping("/viewMain")
-    public String viewMain(Model model,HttpServletRequest httpServletRequest)
+    public String viewMain(Model model,HttpServletRequest httpServletRequest,String msg)
     {
+        model.addAttribute("msg",msg);
         Account account =(Account) httpServletRequest.getSession().getAttribute("account");
-       if(model.getAttribute("msg") == null )
-       {
-           model.addAttribute("msg","Welcome to MyPetStore, look for whatever you want!");
-       }
        if(account != null)
        {
            model.addAttribute("account",account);
-           model.addAttribute("msg","Hello, "+account.getUsername()+"!");
+           model.addAttribute("msg2","Hello, "+account.getUsername()+"!");
        }
+       else
+       {
+           model.addAttribute("msg2","Welcome to MyPetStore, look for whatever you want!");
+       }
+
         return"/catalog/main";
     }
 
@@ -46,9 +48,9 @@ public class CatalogController {
             List<Product> productList = catalogService.getProductListByCategory(categoryId);
             model.addAttribute("productList", productList);
             model.addAttribute("category", category);
-            return "catalog/category";
+            return "/catalog/category";
         }
-        return "redirect:/main";
+        return "redirect:/catalog/viewMain";
     }
 
     @GetMapping("/viewProduct")
@@ -63,9 +65,9 @@ public class CatalogController {
             List<Item> itemList = catalogService.getItemListByProduct(productId);
             model.addAttribute("itemList",itemList);
             model.addAttribute("product",product);
-            return "catalog/product";
+            return "/catalog/product";
         }
-        return "redirect:catalog/category?categoryId="+((Category)model.getAttribute("category")).getCategoryId();
+        return "redirect:/catalog/viewCategory?categoryId="+((Category)model.getAttribute("category")).getCategoryId();
     }
 
     @GetMapping("/viewItem")
@@ -81,13 +83,10 @@ public class CatalogController {
             model.addAttribute("item",item);
             int itemInventoryQuantity = catalogService.getItemInventoryQuantity(itemId);
             model.addAttribute("itemQuantity",itemInventoryQuantity);
-            System.out.println(model.getAttribute("msg"));
-            if(model.getAttribute("msg") == null)
-            model.addAttribute("msg",null);
 
             return "catalog/item";
         }
-        return "redirect:catalog/product?productId="+((Product)model.getAttribute("product")).getProductId();
+        return "redirect:/catalog/viewProduct?productId="+((Product)model.getAttribute("product")).getProductId();
     }
 
     @PostMapping("/viewSearchProducts")
